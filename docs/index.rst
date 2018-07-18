@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-欢迎访问数智大脑（DataBrainHub）文档!
+欢迎访问数智大脑（DataBrainOS）文档!
 ==================================================
 
 Contents:
