@@ -43,7 +43,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Read the Docs Template'
+project = u'数智大脑（DataBrainOS）'
 copyright = u'2018, 数用（北京）科技有限责任公司'
 
 # The version info for the project you're documenting, acts as replacement for
