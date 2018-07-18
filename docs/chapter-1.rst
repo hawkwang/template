@@ -9,8 +9,13 @@
 简要介绍
 --------
 
+大数据智能综合治理平台，是公司研发的一站式大数据智能综合治理平台，简称数智大
+脑或 DataBrainOS。该平台是公司核心骨干综合多年大数据、人工智能及流数据平台的建
+设经验和技术积累，构建的能够满足各类组织数智化转型需求和进行数智创新的赋能平台。
+
 $project will solve your problem of where to start with documentation,
 by providing a basic explanation of how to do it easily.
+
 
 
 
