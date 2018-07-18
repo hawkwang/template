@@ -22,7 +22,16 @@
 - 快速开发数智应用的能力
 - 不断审视数据智能能力，升级产品，提供更多数据智能服务
 
-.. |大数据智能综合治理平台示意图| image:: ./images/databrain-1.png
+.. image:: ./images/databrain-1.png
+
+.. figure:: ./images/databrain-1.png
+    :width: 400px
+    :align: center
+    :height: 350px
+    :alt: alternate text
+    :figclass: align-center
+
+    大数据智能综合治理平台示意图
 
 
 同时，机构组织采用该平台也能快速创建、测试、部署自己的业务应用，与传统的大数
