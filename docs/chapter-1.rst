@@ -15,13 +15,14 @@
 务服务模式和业务运营方式的创新，并且逐步帮助各类组织快速转型为面向未来的 DT 组织。
 
 该平台让组织拥有：
+
 - 安全可靠的数智大脑
 - 业务活数据接入汇聚分析能力
 - 创建并提供精准智能化服务能力
 - 快速开发数智应用的能力
 - 不断审视数据智能能力，升级产品，提供更多数据智能服务
 
-.. image:: ./images/databrain-1.png
+.. |大数据智能综合治理平台示意图| image:: ./images/databrain-1.png
 
 
 同时，机构组织采用该平台也能快速创建、测试、部署自己的业务应用，与传统的大数
@@ -33,29 +34,14 @@
 及相关服务提供一个开箱即用的解决方案。不仅大大降低了企业开发提供数智应用服务的门
 槛，而且帮助企业进行产品多元化和产品定制化服务，从而大幅提高数智应用的交付效率。
 
-Look how easy it is to use:
-
-    import project
-    # Get your stuff done
-    project.do_stuff()
-
-Features
---------
-
-- Be awesome
-- Make things faster
-
-Installation
-------------
-
-Install $project by running
 
 
-+------------------------+------------+----------+----------+
-| Header row, column 1   | Header 2   | Header 3 | Header 4 |
-| (header rows optional) |            |          |          |
-+========================+============+==========+==========+
-| body row 1, column 1   | column 2   | column 3 | column 4 |
-+------------------------+------------+----------+----------+
-| body row 2             | ...        | ...      |          |
-+------------------------+------------+----------+----------+
+
+
+.. csv-table:: a title
+   :header: "name", "firstname", "age"
+   :widths: 20, 20, 10
+
+   "Smith", "John", 40
+   "Smith", "John, Junior", 20
+
