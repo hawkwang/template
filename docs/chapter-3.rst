@@ -20,7 +20,7 @@
 件。平台提供了缺省的处理组件，也支撑处理组件的定制化开发和处理组件的导入、导出。
 我们也统称这些处理组件为“数智神经元”。这些概念之间的关系可参见下图。
 
-.. figure:: ./images/concepts.png
+.. figure:: ./images/concepts.PNG
     :width: 650px
     :align: center
     :height: 500px
