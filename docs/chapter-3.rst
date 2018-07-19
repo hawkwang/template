@@ -83,7 +83,7 @@ DataBrainOS Data Preprocessor 用于构建数智探索单元，进行数据清�
 源(如物联网、传感器、交易系统等)，进行数据的清洗、汇合及整理等，为后续分析的准确
 性提供保障。下图是一个典型的 Data Preprocessor 操作界面，其中是数智探索单元。
 
-.. figure:: ./images/NIFI.png
+.. figure:: ./images/NIFI.PNG
     :width: 600px
     :align: center
     :height: 400px
@@ -267,7 +267,7 @@ DataBrainOS Data Preprocessor 用于构建数智探索单元，进行数据清�
 源(如物联网、传感器、交易系统等)，进行数据的清洗、汇合及整理等，为后续分析的准确
 性提供保障。下图是一个典型的 Data Preprocessor 操作界面，其中是数智探索单元。
 
-.. figure:: ./images/NIFI.png
+.. figure:: ./images/NIFI.PNG
     :width: 600px
     :align: center
     :height: 400px
