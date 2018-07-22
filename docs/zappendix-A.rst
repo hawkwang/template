@@ -30,17 +30,21 @@
 
 .. csv-table:: 数智大脑（DataBrainOS）基本数智服务
    :header: "数智基础服务", "功能", "Master", "Worker"
-   :widths: 200, 200, 200, 200
+   :widths: 100, 350, 200, 200
    
-   "HDFS", "Hadoop distributed filesystem", "Primary Namenode, Secondary Namenode", "Data Node"
-   "YARN", "Cluster resource management", "YARN Resource Manager", "YARN NodeManager"
-   "HBase", "Column-oriented NoSQL Database", "HBase Master", "HBase Region Server"
-   "Ambari", "Hadoop Cluster management", "Ambari Server", "Ambari Agent"
-   "", "", "", ""
-   "", "", "", ""
-   "", "", "", ""
-   "", "", "", ""
-   "", "", "", ""
+   "HDFS", "Hadoop分布式文件系统", "Primary Namenode, Secondary Namenode", "Data Node"
+   "YARN", "Haddop集群资源管理", "YARN Resource Manager", "YARN NodeManager"
+   "Hive", "基于Hadoop的数据仓库工具", "Hive Server", ""
+   "HBase", "列式NoSQL数据库", "HBase Master", "HBase Region Server"
+   "Ambari", "Hadoop集群管理监控服务", "Ambari Server", "Ambari Agent"
+   "Flow", "数据流处理编排和部署服务", "", "Data Analyzer"
+   "NiFi", "数据清洗、转换、ETL、发现与探索服务", "", "Data Preprocessor"
+   "Kafka", "数据集成", "Kafka Manager", "Kafka Broker"
+   "Druid", "实时OLAP", "Druid Broker, Druid Router, Druid Coordinator", "Druid Middlemanager"
+   "Ranger", "集中式安全管理框架, 并解决授权和审计", "Ranger", ""
+   "Storm", "流处理引擎", "Storm UI", "Storm supervisor"
+   "Hue", "Apache Hadoop UI, 支持在浏览器端的Web控制台上与Hadoop集群进行交互来分析处理数据，例如操作HDFS上的数据，运行MapReduce Job，执行Hive的SQL语句，浏览HBase数据库等等", "", "Hue Server"
+   "Zeppelin", "交互式数据分析和数据可视化", "", "Zeppelin"
 
 下表为推荐的数智基础服务的服务器物理节点部署映射表。
 
@@ -52,12 +56,49 @@
    NameNode  
     | Quorum Journal Node
     | ZooKeeper
-    | HBase Master 2"
+    | Hive Server
+    | HBase Master 2
+    | Druid Broker"
    "Standby NameNode", " 
    Standby NameNode  
     | Resource Manager
     | Quorum Journal Node
+    | Druid Overload
     | ZooKeeper"
+   "HA Node", " 
+   Standby Resource Manager  
+    | Quorum Journal Node
+    | ZooKeeper
+    | HBase Master 1
+    | Storm UI
+    | Druid Router
+    | Druid Coordinator
+    | Ranger"
+   "Data Node(x)", " 
+   Data Node  
+    | NodeManager
+    | ZooKeeper
+    | HBase RegionServer
+    | Druid Middlemanager"
+   "Admin Node", " 
+   Operational Databases (PostgreSQL)  
+    | Ambari
+    | Kafka Manager
+    | Hue Server
+    | Flow
+    | Schema Registry
+    | Superset
+    | Zeppelin
+    | MySQL
+    | ZooKeeper"
+   "Edge Nodes", " 
+   API Manager  
+    | AI Manager
+    | Kafka Broker
+    | Storm supervisor
+    | H2O
+    | NiFi
+    | Microservices"
    "", ""
 
 网络（Network Architecture）
