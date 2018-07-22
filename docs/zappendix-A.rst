@@ -24,7 +24,7 @@
    "Data Node 1 - N", "必须", "Data"
    "High Availability (HA) Node", "必须", "Master"
    "Admin Node", "必须", "Master"
-   "Edge Node 1 - N", "建议", "Master"
+   "Edge Node 1 - N", "建议（否则服务要与其它节点公用资源）", "Master"
 
 下表中列出了数智大脑（DataBrainOS）中运行的数智基础服务。
 
@@ -49,6 +49,8 @@
    "H2O", "企业级机器学习服务组件", "", "H2O"
    "AI Manager", "管理H2O构建的模型、发布模型服务等", "", "AI Manager"
    "API Manager", "管理数智大脑（DataBrainOS）对外赋能的API，保留认证、鉴权、流量控制等", "", "API Manager"
+   "Kerberos", "数智大脑（DataBrainOS）采用Kerberos作为安全认证系统", "", "Kerberos"
+   "DataBrainOS UI", "数智大脑（DataBrainOS）统一访问界面", "", "DataBrainOS UI"
 
 下表为推荐的数智基础服务的服务器物理节点部署映射表。
 
@@ -94,9 +96,10 @@
     | Superset
     | Zeppelin
     | MySQL
+    | Kerberos
     | ZooKeeper"
    "Edge Nodes", " 
-   DataBrainOS UI server  
+   DataBrainOS UI  
     | API Manager
     | AI Manager
     | Kafka Broker
@@ -104,15 +107,92 @@
     | H2O
     | NiFi
     | Microservices"
-   "", ""
+
 
 网络（Network Architecture）
 ------------------
 
+集群网络架构旨在满足高性能和可扩展的集群需求，同时兼顾提供冗余和访问管理功能。
+该体系结构是基于10GbE网络技术的leaf-spine模型，并使用Dell S4048-ON交换机作为leaf，
+使用Dell S6000-ON交换机作为spine。网络采用IPv4。
+
+.. figure:: ./images/network-connections.PNG
+    :width: 550px
+    :align: center
+    :height: 350px
+    :alt: alternate text
+    :figclass: align-center
+
+    网络架构图
+
+集群网络
+***************
+
+从上图可以看出，集群使用了三种网络，具体信息参见下表：
+
+.. csv-table:: 集群网络
+   :header: "网络", "连接", "交换机"
+   :widths: 200, 200, 200
+   
+   "集群数据网络（Data Network）", "万兆以太网（Bonded 10GbE）", "双顶架（Pod）交换机和支持端口聚合功能交换机"
+   "BMC网络（BMC Network）", "1GbE", "每个机架使用专用交换机"
+   "边缘网络（Edge Network）", "10GbE", "直接到边缘网络，或通过pod或聚合交换机"
+
+
 服务器架构（Server Architecture）
 ----------------
+
+我们将服务器硬件配置分为两大类：
+
+- 主节点（Master Node）
+- 数据节点（Data Node）
+
+主节点（Master Node）
+******************
+
+主节点用于托管关键群集服务，并且优化配置以减少停机并提供高性能。 推荐的配置参见下表。
+
+.. csv-table:: 服务器硬件配置-主节点（Master Node） [1]_ 
+   :header: "组件", "硬件选型"
+   :widths: 200, 400
+   
+   "平台", "Dell EMC PowerEdge R730xd (12-Drive Option with Flex Bay)"
+   "处理器", "2x Intel Xeon E5-2650 v4 2.2 GHz (12-Core)"
+   "RAM（最小）", "256 GB"
+   "NDC", "Intel X520 Dual-port 10GbE + I350 Dual-port 1GbE"
+   "硬盘 (Hot-Plug)", "8x 1TB 7.2K RPM SAS 12Gbps (Data)"
+   "Disk (Flex Bay)", "2x 600GB 10K RPM SAS 12Gbps (OS)"
+   "存储控制器", "Dell EMC PowerEdge RAID Controller (PERC) H730"
+
+
+
+数据节点（Data Node）
+********************
+
+数据节点是DataBrainOS集群的核心。数据节点需要综合考虑计算和存储存储能力，在此给出了一般性推荐配置，参见下表。
+
+.. csv-table:: 服务器硬件配置-数据节点（Data Node） [1]_ 
+   :header: "组件", "硬件选型"
+   :widths: 200, 400
+   
+   "平台", "Dell EMC PowerEdge R730xd (12-Drive Option with Flex Bay)"
+   "处理器", "2x Intel Xeon E5-2650 v4 2.2 GHz (12-Core)"
+   "RAM（最小）", "256 GB"
+   "NDC", "Intel X520 Dual-port 10GbE + I350 Dual-port 1GbE (LACP Bonded)"
+   "硬盘 (Hot-Plug)", "12x 4TB 7.2K RPM SAS 12Gbps (HDFS) – Non-RAID or RAID 0"
+   "Disk (Flex Bay)", "2x 600GB 10K RPM SAS 12Gbps (OS) – RAID 1 (Mirror)"
+   "存储控制器", "Dell PowerEdge RAID Controller (PERC) H730"
+
+
+
+
+
+
 
 规模规划指南（Sizing Guidelines）
 ----------------
 
 
+
+
+.. [1] 该配置可采用R740xd或其他类似配置机型根据自身需求进行相应调整。
