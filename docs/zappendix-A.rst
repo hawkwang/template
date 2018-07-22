@@ -37,20 +37,24 @@
    "Hive", "基于Hadoop的数据仓库工具", "Hive Server", ""
    "HBase", "列式NoSQL数据库", "HBase Master", "HBase Region Server"
    "Ambari", "Hadoop集群管理监控服务", "Ambari Server", "Ambari Agent"
-   "Flow", "数据流处理编排和部署服务", "", "Data Analyzer"
-   "NiFi", "数据清洗、转换、ETL、发现与探索服务", "", "Data Preprocessor"
-   "Kafka", "数据集成", "Kafka Manager", "Kafka Broker"
-   "Druid", "实时OLAP", "Druid Broker, Druid Router, Druid Coordinator", "Druid Middlemanager"
+   "Flow", "拖拽式数智单元编排和部署组件", "Data Analyzer", ""
+   "NiFi", "数据清洗、转换、ETL、发现与探索组件", "Data Preprocessor", ""
+   "Kafka", "高吞吐量的分布式发布订阅-消息系统", "", "Kafka Broker"
+   "Kafka Manager", "Kafka 管理工具，支持管理多个集群、轻松检查集群状态等", "Kafka Manager", ""
+   "Druid", "海量实时OLAP数据仓库", "Druid Broker, Druid Router, Druid Coordinator", "Druid Middlemanager"
    "Ranger", "集中式安全管理框架, 并解决授权和审计", "Ranger", ""
-   "Storm", "流处理引擎", "Storm UI", "Storm supervisor"
+   "Storm", "分布式高容错的实时计算引擎", "Storm UI", "Storm supervisor"
    "Hue", "Apache Hadoop UI, 支持在浏览器端的Web控制台上与Hadoop集群进行交互来分析处理数据，例如操作HDFS上的数据，运行MapReduce Job，执行Hive的SQL语句，浏览HBase数据库等等", "", "Hue Server"
-   "Zeppelin", "交互式数据分析和数据可视化", "", "Zeppelin"
+   "Zeppelin", "交互式数据分析和数据可视化", "Zeppelin", ""
+   "H2O", "企业级机器学习服务组件", "", "H2O"
+   "AI Manager", "管理H2O构建的模型、发布模型服务等", "", "AI Manager"
+   "API Manager", "管理数智大脑（DataBrainOS）对外赋能的API，保留认证、鉴权、流量控制等", "", "API Manager"
 
 下表为推荐的数智基础服务的服务器物理节点部署映射表。
 
 .. csv-table:: 物理节点 VS 数智基础服务
    :header: "物理节点", "服务"
-   :widths: 200, 300
+   :widths: 200, 400
    
    "Active NameNode", " 
    NameNode  
@@ -81,8 +85,8 @@
     | HBase RegionServer
     | Druid Middlemanager"
    "Admin Node", " 
-   Operational Databases (PostgreSQL)  
-    | Ambari
+   Ambari 
+    | Operational Databases (PostgreSQL) 
     | Kafka Manager
     | Hue Server
     | Flow
@@ -92,7 +96,8 @@
     | MySQL
     | ZooKeeper"
    "Edge Nodes", " 
-   API Manager  
+   DataBrainOS UI server  
+    | API Manager
     | AI Manager
     | Kafka Broker
     | Storm supervisor
