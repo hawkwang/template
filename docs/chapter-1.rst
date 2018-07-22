@@ -151,10 +151,5 @@ DataBrainOS 底层基于 Docker 和 Kubernetes 构建容器云，能更好的支
 
 
 
-.. csv-table:: a title
-   :header: "name", "firstname", "age"
-   :widths: 20, 20, 10
 
-   "Smith", "John", 40
-   "Smith", "John, Junior", 20
 
