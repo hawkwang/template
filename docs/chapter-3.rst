@@ -111,7 +111,7 @@ Analyzer 提供了大量通用组件，方便用户直接使用，用户也可�
     :alt: alternate text
     :figclass: align-center
 
-    Data Preprocessor 界面
+    Data Analyzer 界面
 
 APACHE HADOOP
 *************************
@@ -203,7 +203,7 @@ Hue 是 Cloudera 的大数据 Web 工具，是一个开源的 Apache Hadoop UI �
 过 HUE 可以很方便的浏览 HDFS 中的目录和文件，并且进行文件和目录的创建、复制、删
 除、下载以及修改权限等操作；HUE 还提供友好方便的 Hive 查询功能，能够选择不同的
 Hive 数据库，编写 HQL 语句，提交查询任务，并且能够在界面下方看到查询作业运行的日
-志。在得到结果后，还提供进行简单的图表分析能力； Hue 同样可以通过 thrift 操作 HBase，
+志。在得到结果后，还提供进行简单的图表分析能力； Hue 同样可以操作 HBase，
 包括创建，删除，批量导入等基本功能。
 
 ELASTICSEARCH
@@ -252,7 +252,7 @@ SCHEMA REGISTRY
 
 - 集中式注册表 - 提供可重用的Schema，以避免将元数据附加到每个数据
 - 版本管理 - 定义元数据版本之间的关系，以便消费者和生产者可以以不同的情况演进
-- 元数据验证 - 确保通用格式转换及数据质量
+- 元数据验证 - 确保通用格式转换，基于元数据的数据质量检验
 
 
 数智应用服务

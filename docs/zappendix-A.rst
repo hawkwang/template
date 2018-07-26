@@ -1,226 +1,85 @@
-附录A：数智大脑部署运行参考方案
+附录A：主要数智基础服务组件
 ==============
 
-此参考体系架构提供了基于Dell EMC服务器硬件和网络配置运行数智慧大脑（DataBrainOS）平台的参考方案 [DELLEMCHADOOP]_ 。 
-该架构专注于硬件配置，并没有详细介绍DataBrainOS或运行其中的各个组件。
+数智基础服务组件为数智大脑构建数据智能应用服务提供了基础功能。
+下面就数智大脑中主要数智基础服务组件进行一一介绍。
 
-下面介绍运行数智大脑（DataBrainOS）的整个集群架构，包括推荐的服务器配置，网络结构和软件角色分配。
-
-节点架构（Node Architecture）
+Schema Registry
 ---------------
 
-数智大脑（DataBrainOS）平台由许多数智基础服务组件组成，涵盖范围广泛的功能。 
-大多数这些组件都是作为运行的主服务和工作服务，以分布式方式在集群上运行。
-在此体系结构中，我们将物理节点分类为角色，然后将各种服务映射到这些角色上。
-根据群集工作负载，可以灵活的将服务和角色分配给各个物理节点。
-下表显示了物理节点的分类情况。
+Schema Registry为数智大脑提供一种集中管理元数据的机制,
+为允许各类组件之间相互的灵活交互提供了有力保障。
 
-.. csv-table:: 集群物理节点角色
-   :header: "物理节点角色", "是否必须", "服务器硬件配置"
-   :widths: 200, 200, 200
+
+元数据实体
+************
+
+Schema Registry中主要涉及了三种元数据实体。
+
+- 元数据组
+
+  用户可以按照功能逻辑或其它需求将元数据进行分组以便于管理。
+  元数据组主要用 *GroupName* 进行区分。
+  例如，*Group Name ： machine-sensors-kafka* 。
+
+- 元数据定义
+
+  命名元数据的详细信息，也可成为元数据的元数据。
+  一个元数据只能隶属一个元数据组。 
+
+  元数据定义主要包括：
+
+  * 名称（name） – 元数据唯一名称，用于查找元数据。例如： *Schema Name ： machine_events_avro:v* 
+
+  * 类型（Type） – 元数据类型，采用Avro形式 [ARVO]_ 。例如： *Schema Type ： avro* 
+
+  * 兼容策略（Compatibility Policy） – 当新版本元数据创建时需要考虑的兼容规则，参见下面的兼容策略部分。例如： *Compatibility Policy ： SchemaCompatibility.BACKWARD* 
+
+  * 序列化/反序列化组件（Serializers/Deserializers） - 可上传的与元数据定义相关联的序列化和反序列化组件。
+
+- 元数据版本
+
+  与已定义元数据相关的版本信息。一个元数据可以有多个版本。
+
+  一个例子::
+
+    {   
+        "type" : "record",   
+        "namespace" : "databrainhub.dbos.app.driving",   
+        "name" : "cargeoevent",   
+        "fields" : [     
+            { "name" : "eventTime" , "type" : "string" },     
+            { "name" : "eventSource" , "type" : "string" },      
+            { "name" : "carId" , "type" : "int" },      
+            { "name" : "driverId" , "type" : "int"},      
+            { "name" : "driverName" , "type" : "string"},      
+            { "name" : "routeId" , "type" : "int"},      
+            { "name" : "route" , "type" : "string"},      
+            { "name" : "eventType" , "type" : "string"},      
+            { "name" : "longitude" , "type" : "double"},      
+            { "name" : "latitude" , "type" : "double"}     
+        ]
+    }
+
+
+兼容策略（Compatibility Policy）
+************
+
+Schema Registry的一个主要功能是能在元数据演进时对其进行版本控制。 
+兼容性策略在元数据定义级别进行创建，这样可以为每个元数据定义版本演进的兼容规则。
+一旦定义了兼容性策略，任何后续版本的更新都必须遵守已定义的规则，以确保兼容性，
+否则系统将以错误进行处理。
+
+兼容性策略可以采用如下几种情况取值：
+
+.. csv-table:: 兼容性策略取值范围
+   :header: "类型", "值", "解释"
+   :widths: 200, 200, 400
    
-   "Active NameNode", "必须", "Master"
-   "Standby NameNode", "必须", "Master"
-   "Data Node 1 - N", "必须", "Data"
-   "High Availability (HA) Node", "必须", "Master"
-   "Admin Node", "必须", "Master"
-   "Edge Node 1 - N", "建议（否则服务要与其它节点公用资源）", "Master"
+   "后向兼容", "SchemaCompatibility.BACKWARD", "表示新版本元数据与早期版本兼容。 这意味着按照早期版本写入的数据可以采用新版元数据进行反序列化。"
+   "前向兼容", "SchemaCompatibility.FORWARD", "表示现有版本元数据与后续版本兼容。 这意味着仍然可以使用旧版本读取按新版元数据写入的数据。"
+   "双向兼容", "SchemaCompatibility.FULL", "表示新版本元数据提供向后和向前兼容性。"
+   "无兼容性", "SchemaCompatibility.NONE", "表示无兼容性策略。"
 
-下表中列出了数智大脑（DataBrainOS）中运行的数智基础服务。
-
-.. csv-table:: 数智大脑（DataBrainOS）基本数智服务
-   :header: "数智基础服务", "功能", "Master", "Worker"
-   :widths: 100, 350, 200, 200
-   
-   "HDFS", "Hadoop分布式文件系统", "Primary Namenode, Secondary Namenode", "Data Node"
-   "YARN", "Haddop集群资源管理", "YARN Resource Manager", "YARN NodeManager"
-   "Hive", "基于Hadoop的数据仓库工具", "Hive Server", ""
-   "HBase", "列式NoSQL数据库", "HBase Master", "HBase Region Server"
-   "Ambari", "Hadoop集群管理监控服务", "Ambari Server", "Ambari Agent"
-   "Flow", "拖拽式数智单元编排和部署组件", "Data Analyzer", ""
-   "NiFi", "数据清洗、转换、ETL、发现与探索组件", "Data Preprocessor", ""
-   "Kafka", "高吞吐量的分布式发布订阅-消息系统", "", "Kafka Broker"
-   "Kafka Manager", "Kafka 管理工具，支持管理多个集群、轻松检查集群状态等", "Kafka Manager", ""
-   "Druid", "海量实时OLAP数据仓库", "Druid Broker, Druid Router, Druid Coordinator", "Druid Middlemanager"
-   "Ranger", "集中式安全管理框架, 并解决授权和审计", "Ranger", ""
-   "Storm", "分布式高容错的实时计算引擎", "Storm UI", "Storm supervisor"
-   "Hue", "Apache Hadoop UI, 支持在浏览器端的Web控制台上与Hadoop集群进行交互来分析处理数据，例如操作HDFS上的数据，运行MapReduce Job，执行Hive的SQL语句，浏览HBase数据库等等", "", "Hue Server"
-   "Zeppelin", "交互式数据分析和数据可视化", "Zeppelin", ""
-   "H2O", "企业级机器学习服务组件", "", "H2O"
-   "AI Manager", "管理H2O构建的模型、发布模型服务等", "", "AI Manager"
-   "API Manager", "管理数智大脑（DataBrainOS）对外赋能的API，保留认证、鉴权、流量控制等", "", "API Manager"
-   "Kerberos", "数智大脑（DataBrainOS）采用Kerberos作为安全认证系统", "", "Kerberos"
-   "DataBrainOS UI", "数智大脑（DataBrainOS）统一访问界面", "", "DataBrainOS UI"
-
-下表为推荐的数智基础服务的服务器物理节点部署映射表。
-
-.. csv-table:: 物理节点 VS 数智基础服务
-   :header: "物理节点", "服务"
-   :widths: 200, 400
-   
-   "Active NameNode", " 
-   NameNode  
-    | Quorum Journal Node
-    | ZooKeeper
-    | Hive Server
-    | HBase Master 2
-    | Druid Broker"
-   "Standby NameNode", " 
-   Standby NameNode  
-    | Resource Manager
-    | Quorum Journal Node
-    | Druid Overload
-    | ZooKeeper"
-   "HA Node", " 
-   Standby Resource Manager  
-    | Quorum Journal Node
-    | ZooKeeper
-    | HBase Master 1
-    | Storm UI
-    | Druid Router
-    | Druid Coordinator
-    | Ranger"
-   "Data Node(x)", " 
-   Data Node  
-    | NodeManager
-    | ZooKeeper
-    | HBase RegionServer
-    | Druid Middlemanager"
-   "Admin Node", " 
-   Ambari 
-    | Operational Databases (PostgreSQL) 
-    | Kafka Manager
-    | Hue Server
-    | Flow
-    | Schema Registry
-    | Superset
-    | Zeppelin
-    | MySQL
-    | Kerberos
-    | ZooKeeper"
-   "Edge Nodes", " 
-   DataBrainOS UI  
-    | API Manager
-    | AI Manager
-    | Kafka Broker
-    | Storm supervisor
-    | H2O
-    | NiFi
-    | Microservices"
-
-
-网络（Network Architecture）
-------------------
-
-集群网络架构旨在满足高性能和可扩展的集群需求，同时兼顾提供冗余和访问管理功能。
-该体系结构是基于10GbE网络技术的leaf-spine模型，并使用Dell S4048-ON交换机作为leaf，
-使用Dell S6000-ON交换机作为spine。网络采用IPv4。
-
-.. figure:: ./images/network-connections.PNG
-    :width: 550px
-    :align: center
-    :height: 350px
-    :alt: alternate text
-    :figclass: align-center
-
-    网络架构图
-
-集群网络
-***************
-
-从上图可以看出，集群使用了三种网络，具体信息参见下表：
-
-.. csv-table:: 集群网络
-   :header: "网络", "连接", "交换机"
-   :widths: 200, 200, 200
-   
-   "集群数据网络（Data Network）", "万兆以太网（Bonded 10GbE）", "双顶架（Pod）交换机和支持端口聚合功能交换机"
-   "BMC网络（BMC Network）", "1GbE", "每个机架使用专用交换机"
-   "边缘网络（Edge Network）", "10GbE", "直接到边缘网络，或通过pod或聚合交换机"
-
-
-服务器架构（Server Architecture）
-----------------
-
-我们将服务器硬件配置分为两大类：
-
-- 主节点（Master Node）
-- 数据节点（Data Node）
-
-主节点（Master Node）
-******************
-
-主节点用于托管关键群集服务，并且优化配置以减少停机并提供高性能。 推荐的配置参见下表。
-
-.. csv-table:: 服务器硬件配置-主节点（Master Node） [1]_ 
-   :header: "组件", "硬件选型"
-   :widths: 200, 400
-   
-   "平台", "Dell EMC PowerEdge R730xd (12-Drive Option with Flex Bay)"
-   "处理器", "2x Intel Xeon E5-2650 v4 2.2 GHz (12-Core)"
-   "RAM（最小）", "256 GB"
-   "NDC", "Intel X520 Dual-port 10GbE + I350 Dual-port 1GbE"
-   "硬盘 (Hot-Plug)", "8x 1TB 7.2K RPM SAS 12Gbps (Data)"
-   "Disk (Flex Bay)", "2x 600GB 10K RPM SAS 12Gbps (OS)"
-   "存储控制器", "Dell EMC PowerEdge RAID Controller (PERC) H730"
-
-
-
-数据节点（Data Node）
-********************
-
-数据节点是DataBrainOS集群的核心。数据节点需要综合考虑计算和存储存储能力，在此给出了一般性推荐配置，参见下表。
-
-.. csv-table:: 服务器硬件配置-数据节点（Data Node） [1]_ 
-   :header: "组件", "硬件选型"
-   :widths: 200, 400
-   
-   "平台", "Dell EMC PowerEdge R730xd (12-Drive Option with Flex Bay)"
-   "处理器", "2x Intel Xeon E5-2650 v4 2.2 GHz (12-Core)"
-   "RAM（最小）", "256 GB"
-   "NDC", "Intel X520 Dual-port 10GbE + I350 Dual-port 1GbE (LACP Bonded)"
-   "硬盘 (Hot-Plug)", "12x 4TB 7.2K RPM SAS 12Gbps (HDFS) – Non-RAID or RAID 0"
-   "Disk (Flex Bay)", "2x 600GB 10K RPM SAS 12Gbps (OS) – RAID 1 (Mirror)"
-   "存储控制器", "Dell PowerEdge RAID Controller (PERC) H730"
-
-
-集群规模规划指南（Cluster Sizing Guidelines）
-----------------
-
-我们充分认识到数智大脑（DataBrainOS）的使用存在包括从小型开发集群到
-大型多PB级生产集群的各种场景。
-建议您直接联系我们的大数据专家帮助您根据确切需求确定集群的规模和配置。
-
-集群节点数量建议
-**********************
-
-我们推荐用户根据以下三种情况来确定集群的基本节点规模：
-
-- 概念验证集群
-
-  这是个最小规模的集群，旨在证明概念性项目。
-  该集群的性能不能用于验证平台的高可用性，但足以验证平台的整体功能和并行处理能力。
-
-- 最小开发集群
-
-  用于开发工作的集群可提供并验证基本的集群弹性和额外的可扩展性。
-
-- 最小生产集群
-
-  最小生产群集配置提供密集存储和计算能力，以及高可扩展性。 
-  生产集群采用足够数量的数据节点来证明分布式的性能优势存储和并行计算能力。
-
-.. csv-table:: 集群规模推荐
-   :header: "集群类型", "概念验证集群", "最小开发集群", "最小生产集群"
-   :widths: 200, 200, 200, 200
-   
-   "NameNode",     "1", "2", "2"
-   "Data Nodes",   "1", "3", "3"
-   "HA Node",      "1", "1", "1"
-   "Admin Node",   "0", "0", "1"
-   "Edge Node(s)", "0", "0", "2"
-   "总计：",       "3", "6", "9"  
-
-
-
-.. [1] 该配置可采用R740xd或其他类似配置机型根据自身需求进行相应调整。
+用户可以在添加一个新的元数据时设定兼容性策略，一旦设定就不可以修改。
+缺省值是 *SchemaCompatibility.NONE* 。
