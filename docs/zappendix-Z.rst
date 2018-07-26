@@ -2,3 +2,5 @@
 ==============
 
 .. [DELLEMCHADOOP]	GET THE POWER OF HADOOP FASTER，参见：https://www.dellemc.com/en-us/solutions/data-analytics/hadoop/index.htm
+
+.. [NIFI] APACHE NIFI，参见: http://nifi.apache.org/

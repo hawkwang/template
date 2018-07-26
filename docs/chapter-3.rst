@@ -75,13 +75,15 @@
 
 下面对数智大脑中采用的数智基础服务组件进行一一介绍。
 
-DATA PREPROCESSOR
+DATA PREPROCESSOR (NIFI)
 **************************
 
-DataBrainOS Data Preprocessor 用于构建数智探索单元，进行数据清洗、转换、数智
+DataBrainOS Data Preprocessor 用于构建 **数智探索单元**，进行数据清洗、转换、数智
 探索和发现等任务。DataBrainOS Data Preprocessor 采用可视化配置方式，实现接入数据
 源(如物联网、传感器、交易系统等)，进行数据的清洗、汇合及整理等，为后续分析的准确
 性提供保障。下图是一个典型的 Data Preprocessor 操作界面，其中是数智探索单元。
+注：DataBrainOS Data Preprocessor在Apache NiFi基础上改造形成。
+更多Apache NiFi信息请参见 [NIFI]_ 。
 
 .. figure:: ./images/NIFI.PNG
     :width: 600px
@@ -92,10 +94,10 @@ DataBrainOS Data Preprocessor 用于构建数智探索单元，进行数据清�
 
     Data Preprocessor 界面
 
-DATA ANALYZER
+DATA ANALYZER (DIFlow)
 **************************
 
-Data Analyzer 负责数据智能分析，用于构建数智认知单元，支持图形化拖拽。Data
+Data Analyzer 负责数据智能分析，用于构建 **数智认知单元** ，支持图形化拖拽。Data
 Analyzer 提供了大量通用组件，方便用户直接使用，用户也可以根据需求和平台规范上传
 自定义组件，以满足各种开发需求。Data Analyzer 支持模型的无缝接入，能借助模型实时
 对流数据进行预测。Data Analyzer 采用分布式实时大数据处理系统，保证了分析效率，为
@@ -233,6 +235,25 @@ API MANAGER
 API manager 提供一个接口发布和订阅的平台，开发人员将自己开发的接口上传到平
 台，通过发布按钮将接口发布到平台。接口调用者可以访问平台查看已发布的接口，并根据
 自己的需求订阅接口。
+
+
+SCHEMA REGISTRY
+***********************
+
+元数据是关于数据的组织、数据域及其关系的信息，为描述数据的数据。
+在DataBrainOS中，为允许各类组件之间相互的灵活交互，Schema Registry提供了用于共享Schema的存储，
+以有效管理各种服务组件、数智应用服务、以及数智应用之间交互的数据抽象，也即元数据（Schema）。
+
+基于DataBrainOS构建的数智服务和数智应用通常需要一种共享元数据的方式，
+同时需要根据服务和应用演进对元数据的版本进行维护和管理，
+以便消费者和生产者可以理解这些元数据的不同版本且仍可读取不同版本之间共享的所有信息。
+
+因此，Schema Registry为数智大脑提供一种集中管理元数据的机制：
+
+- 集中式注册表 - 提供可重用的Schema，以避免将元数据附加到每个数据
+- 版本管理 - 定义元数据版本之间的关系，以便消费者和生产者可以以不同的情况演进
+- 元数据验证 - 确保通用格式转换及数据质量
+
 
 数智应用服务
 --------------------------
