@@ -82,8 +82,7 @@ DataBrainOS Data Preprocessor 用于构建 **数智探索单元**，进行数据
 探索和发现等任务。DataBrainOS Data Preprocessor 采用可视化配置方式，实现接入数据
 源(如物联网、传感器、交易系统等)，进行数据的清洗、汇合及整理等，为后续分析的准确
 性提供保障。下图是一个典型的 Data Preprocessor 操作界面，其中是数智探索单元。
-注：DataBrainOS Data Preprocessor在Apache NiFi基础上改造形成。
-更多Apache NiFi信息请参见 [NIFI]_ 。
+
 
 .. figure:: ./images/NIFI.PNG
     :width: 600px
@@ -93,6 +92,9 @@ DataBrainOS Data Preprocessor 用于构建 **数智探索单元**，进行数据
     :figclass: align-center
 
     Data Preprocessor 界面
+
+注：DataBrainOS Data Preprocessor在Apache NiFi基础上改造形成。
+更多Apache NiFi信息请参见 [NIFI]_ 。
 
 DATA ANALYZER (DIFlow)
 **************************
