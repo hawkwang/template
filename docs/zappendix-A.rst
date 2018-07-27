@@ -83,3 +83,33 @@ Schema Registry的一个主要功能是能在元数据演进时对其进行版�
 
 用户可以在添加一个新的元数据时设定兼容性策略，一旦设定就不可以修改。
 缺省值是 *SchemaCompatibility.NONE* 。
+
+Schema Registry主要用例
+**********************
+
+在DataBrainOS中，Schema Registry主要用例参见下图：
+
+.. figure:: ./images/uc_schema-registry.png
+    :width: 550px
+    :align: center
+    :height: 450px
+    :alt: alternate text
+    :figclass: align-center
+
+    Schema Registry用例图
+
+Schema Registry 组件架构
+**********************
+
+Schema Registry 组件架构可参见下图。
+
+.. figure:: ./images/architecture-schema-registry.png
+    :width: 550px
+    :align: center
+    :height: 450px
+    :alt: alternate text
+    :figclass: align-center
+
+    Schema Registry 组件架构图
+
+
