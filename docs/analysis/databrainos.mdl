@@ -65,6 +65,15 @@
 			    (object UseCase "从Kafka Topic读出数据"
 				quid       	"5B5B1A940054"
 				stereotype 	"Business Use Case")
+			    (object UseCase "演进Schema"
+				quid       	"5B5B2C550297"
+				stereotype 	"Business Use Case")
+			    (object UseCase "与DATA PREPROCESSOR （NIFI）集成"
+				quid       	"5B5B2CF20152"
+				stereotype 	"Business Use Case")
+			    (object UseCase "与DATA ANALYZER （DIFlow）集成"
+				quid       	"5B5B2D670322"
+				stereotype 	"Business Use Case")
 			    (object Association "$UNNAMED$0"
 				quid       	"5B5B19D202E7"
 				roles      	(list role_list
@@ -112,6 +121,42 @@
 				    (object Role "$UNNAMED$11"
 					quid       	"5B5B1AB5015D"
 					supplier   	"Use Case View::developer"
+					quidu      	"5B5B18EE0297")))
+			    (object Association "$UNNAMED$12"
+				quid       	"5B5B2CA20233"
+				roles      	(list role_list
+				    (object Role "$UNNAMED$13"
+					quid       	"5B5B2CA3015C"
+					supplier   	"Use Case View::DataBrainOS::Schema Registry::演进Schema"
+					quidu      	"5B5B2C550297"
+					is_navigable 	TRUE)
+				    (object Role "$UNNAMED$14"
+					quid       	"5B5B2CA3015E"
+					supplier   	"Use Case View::developer"
+					quidu      	"5B5B18EE0297")))
+			    (object Association "$UNNAMED$15"
+				quid       	"5B5B2D4201B0"
+				roles      	(list role_list
+				    (object Role "$UNNAMED$16"
+					quid       	"5B5B2D430113"
+					supplier   	"Use Case View::DataBrainOS::Schema Registry::与DATA PREPROCESSOR （NIFI）集成"
+					quidu      	"5B5B2CF20152"
+					is_navigable 	TRUE)
+				    (object Role "$UNNAMED$17"
+					quid       	"5B5B2D430115"
+					supplier   	"Use Case View::developer"
+					quidu      	"5B5B18EE0297")))
+			    (object Association "$UNNAMED$18"
+				quid       	"5B5B2DBA0036"
+				roles      	(list role_list
+				    (object Role "$UNNAMED$19"
+					quid       	"5B5B2DBA0394"
+					supplier   	"Use Case View::DataBrainOS::Schema Registry::与DATA ANALYZER （DIFlow）集成"
+					quidu      	"5B5B2D670322"
+					is_navigable 	TRUE)
+				    (object Role "$UNNAMED$20"
+					quid       	"5B5B2DBA0396"
+					supplier   	"Use Case View::developer"
 					quidu      	"5B5B18EE0297"))))
 			logical_presentations 	(list unit_reference_list
 			    (object UseCaseDiagram "Main"
@@ -124,7 +169,7 @@
 				origin_y   	0
 				items      	(list diagram_item_list
 				    (object UseCaseView "Use Case View::DataBrainOS::Schema Registry::注册Schema（用于Kafka Topic）" @1
-					location   	(1400, 325)
+					location   	(884, 581)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -136,7 +181,7 @@
 					    default_color 	TRUE)
 					label      	(object ItemLabel
 					    Parent_View 	@1
-					    location   	(1399, 500)
+					    location   	(883, 756)
 					    anchor_loc 	1
 					    nlines     	2
 					    max_width  	879
@@ -149,7 +194,7 @@
 					quidu      	"5B5B194C0018"
 					width      	306)
 				    (object UseCaseView "Use Case View::DataBrainOS::Schema Registry::检索Schema（用于Kafka Topic）" @2
-					location   	(1409, 725)
+					location   	(1523, 528)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -161,7 +206,7 @@
 					    default_color 	TRUE)
 					label      	(object ItemLabel
 					    Parent_View 	@2
-					    location   	(1408, 900)
+					    location   	(1522, 703)
 					    anchor_loc 	1
 					    nlines     	2
 					    max_width  	879
@@ -174,7 +219,7 @@
 					quidu      	"5B5B19DC0180"
 					width      	306)
 				    (object UseCaseView "Use Case View::DataBrainOS::Schema Registry::将数据写入Kafka Topic" @3
-					location   	(1419, 1141)
+					location   	(2148, 1113)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -186,7 +231,7 @@
 					    default_color 	TRUE)
 					label      	(object ItemLabel
 					    Parent_View 	@3
-					    location   	(1418, 1316)
+					    location   	(2147, 1288)
 					    anchor_loc 	1
 					    nlines     	2
 					    max_width  	879
@@ -198,11 +243,8 @@
 					fill_color 	13434879
 					quidu      	"5B5B1A4003AA"
 					width      	306)
-				    (object ClassView "Class" "Use Case View::developer" @4
-					ShowCompartmentStereotypes 	TRUE
-					IncludeAttribute 	TRUE
-					IncludeOperation 	TRUE
-					location   	(464, 965)
+				    (object UseCaseView "Use Case View::DataBrainOS::Schema Registry::从Kafka Topic读出数据" @4
+					location   	(2028, 1476)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -214,7 +256,85 @@
 					    default_color 	TRUE)
 					label      	(object ItemLabel
 					    Parent_View 	@4
-					    location   	(464, 1125)
+					    location   	(2027, 1651)
+					    anchor_loc 	1
+					    nlines     	2
+					    max_width  	879
+					    justify    	0
+					    label      	"从Kafka Topic读出数据")
+					icon       	"Business Use Case"
+					icon_style 	"Icon"
+					line_color 	3342489
+					fill_color 	13434879
+					quidu      	"5B5B1A940054"
+					width      	306)
+				    (object UseCaseView "Use Case View::DataBrainOS::Schema Registry::演进Schema" @5
+					location   	(1949, 804)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@5
+					    location   	(1948, 979)
+					    anchor_loc 	1
+					    nlines     	2
+					    max_width  	879
+					    justify    	0
+					    label      	"演进Schema")
+					icon       	"Business Use Case"
+					icon_style 	"Icon"
+					line_color 	3342489
+					fill_color 	13434879
+					quidu      	"5B5B2C550297"
+					width      	306)
+				    (object UseCaseView "Use Case View::DataBrainOS::Schema Registry::与DATA PREPROCESSOR （NIFI）集成" @6
+					location   	(1759, 1775)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@6
+					    location   	(1758, 1950)
+					    anchor_loc 	1
+					    nlines     	2
+					    max_width  	879
+					    justify    	0
+					    label      	"与DATA PREPROCESSOR （NIFI）集成")
+					icon       	"Business Use Case"
+					icon_style 	"Icon"
+					line_color 	3342489
+					fill_color 	13434879
+					quidu      	"5B5B2CF20152"
+					width      	306)
+				    (object ClassView "Class" "Use Case View::developer" @7
+					ShowCompartmentStereotypes 	TRUE
+					IncludeAttribute 	TRUE
+					IncludeOperation 	TRUE
+					location   	(614, 1333)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@7
+					    location   	(614, 1493)
 					    anchor_loc 	1
 					    nlines     	2
 					    max_width  	328
@@ -226,8 +346,8 @@
 					quidu      	"5B5B18EE0297"
 					annotation 	8
 					autoResize 	TRUE)
-				    (object AssociationViewNew "$UNNAMED$0" @5
-					location   	(814, 723)
+				    (object AssociationViewNew "$UNNAMED$0" @8
+					location   	(724, 1017)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -241,32 +361,32 @@
 					line_color 	3342489
 					quidu      	"5B5B19D202E7"
 					roleview_list 	(list RoleViews
-					    (object RoleView "$UNNAMED$1" @6
-						Parent_View 	@5
-						location   	(320, 42)
+					    (object RoleView "$UNNAMED$1" @9
+						Parent_View 	@8
+						location   	(230, 336)
 						stereotype 	TRUE
 						line_color 	3342489
 						quidu      	"5B5B19D300CA"
-						client     	@5
+						client     	@8
 						supplier   	@1
 						vertices   	(list Points
-						    (814, 723)
-						    (1108, 525))
+						    (724, 1017)
+						    (809, 781))
 						line_style 	0)
-					    (object RoleView "$UNNAMED$2" @7
-						Parent_View 	@5
-						location   	(320, 42)
+					    (object RoleView "$UNNAMED$2" @10
+						Parent_View 	@8
+						location   	(230, 336)
 						stereotype 	TRUE
 						line_color 	3342489
 						quidu      	"5B5B19D300CC"
-						client     	@5
-						supplier   	@4
+						client     	@8
+						supplier   	@7
 						vertices   	(list Points
-						    (814, 723)
-						    (521, 921))
+						    (724, 1017)
+						    (639, 1253))
 						line_style 	0)))
-				    (object AssociationViewNew "$UNNAMED$3" @8
-					location   	(888, 854)
+				    (object AssociationViewNew "$UNNAMED$3" @11
+					location   	(983, 1003)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -280,32 +400,32 @@
 					line_color 	3342489
 					quidu      	"5B5B1A000024"
 					roleview_list 	(list RoleViews
-					    (object RoleView "$UNNAMED$4" @9
-						Parent_View 	@8
-						location   	(394, 173)
+					    (object RoleView "$UNNAMED$4" @12
+						Parent_View 	@11
+						location   	(489, 322)
 						stereotype 	TRUE
 						line_color 	3342489
 						quidu      	"5B5B1A00031C"
-						client     	@8
+						client     	@11
 						supplier   	@2
 						vertices   	(list Points
-						    (888, 854)
-						    (1256, 761))
+						    (983, 1003)
+						    (1296, 728))
 						line_style 	0)
-					    (object RoleView "$UNNAMED$5" @10
-						Parent_View 	@8
-						location   	(394, 173)
+					    (object RoleView "$UNNAMED$5" @13
+						Parent_View 	@11
+						location   	(489, 322)
 						stereotype 	TRUE
 						line_color 	3342489
 						quidu      	"5B5B1A00031E"
-						client     	@8
-						supplier   	@4
+						client     	@11
+						supplier   	@7
 						vertices   	(list Points
-						    (888, 854)
-						    (521, 947))
+						    (983, 1003)
+						    (671, 1278))
 						line_style 	0)))
-				    (object AssociationViewNew "$UNNAMED$6" @11
-					location   	(893, 1041)
+				    (object AssociationViewNew "$UNNAMED$6" @14
+					location   	(1333, 1227)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -319,57 +439,32 @@
 					line_color 	3342489
 					quidu      	"5B5B1A850321"
 					roleview_list 	(list RoleViews
-					    (object RoleView "$UNNAMED$7" @12
-						Parent_View 	@11
-						location   	(301, 394)
+					    (object RoleView "$UNNAMED$7" @15
+						Parent_View 	@14
+						location   	(741, 580)
 						stereotype 	TRUE
 						line_color 	3342489
 						quidu      	"5B5B1A8601EC"
-						client     	@11
+						client     	@14
 						supplier   	@3
 						vertices   	(list Points
-						    (893, 1041)
-						    (1265, 1109))
+						    (1333, 1227)
+						    (1996, 1132))
 						line_style 	0)
-					    (object RoleView "$UNNAMED$8" @13
-						Parent_View 	@11
-						location   	(301, 394)
+					    (object RoleView "$UNNAMED$8" @16
+						Parent_View 	@14
+						location   	(741, 580)
 						stereotype 	TRUE
 						line_color 	3342489
 						quidu      	"5B5B1A8601EE"
-						client     	@11
-						supplier   	@4
+						client     	@14
+						supplier   	@7
 						vertices   	(list Points
-						    (893, 1041)
-						    (521, 973))
+						    (1333, 1227)
+						    (671, 1322))
 						line_style 	0)))
-				    (object UseCaseView "Use Case View::DataBrainOS::Schema Registry::从Kafka Topic读出数据" @14
-					location   	(1406, 1544)
-					font       	(object Font
-					    size       	10
-					    face       	"Arial"
-					    bold       	FALSE
-					    italics    	FALSE
-					    underline  	FALSE
-					    strike     	FALSE
-					    color      	0
-					    default_color 	TRUE)
-					label      	(object ItemLabel
-					    Parent_View 	@14
-					    location   	(1405, 1719)
-					    anchor_loc 	1
-					    nlines     	2
-					    max_width  	879
-					    justify    	0
-					    label      	"从Kafka Topic读出数据")
-					icon       	"Business Use Case"
-					icon_style 	"Icon"
-					line_color 	3342489
-					fill_color 	13434879
-					quidu      	"5B5B1A940054"
-					width      	306)
-				    (object AssociationViewNew "$UNNAMED$9" @15
-					location   	(887, 1224)
+				    (object AssociationViewNew "$UNNAMED$9" @17
+					location   	(1273, 1397)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -383,29 +478,171 @@
 					line_color 	3342489
 					quidu      	"5B5B1AB402E2"
 					roleview_list 	(list RoleViews
-					    (object RoleView "$UNNAMED$10" @16
-						Parent_View 	@15
-						location   	(395, 190)
+					    (object RoleView "$UNNAMED$10" @18
+						Parent_View 	@17
+						location   	(781, 363)
 						stereotype 	TRUE
 						line_color 	3342489
 						quidu      	"5B5B1AB5015B"
-						client     	@15
-						supplier   	@14
+						client     	@17
+						supplier   	@4
 						vertices   	(list Points
-						    (887, 1224)
-						    (1253, 1449))
+						    (1273, 1397)
+						    (1875, 1457))
 						line_style 	0)
-					    (object RoleView "$UNNAMED$11" @17
-						Parent_View 	@15
-						location   	(395, 190)
+					    (object RoleView "$UNNAMED$11" @19
+						Parent_View 	@17
+						location   	(781, 363)
 						stereotype 	TRUE
 						line_color 	3342489
 						quidu      	"5B5B1AB5015D"
-						client     	@15
-						supplier   	@4
+						client     	@17
+						supplier   	@7
 						vertices   	(list Points
-						    (887, 1224)
-						    (521, 999))
+						    (1273, 1397)
+						    (671, 1337))
+						line_style 	0)))
+				    (object AssociationViewNew "$UNNAMED$12" @20
+					location   	(1234, 1083)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"5B5B2CA20233"
+					roleview_list 	(list RoleViews
+					    (object RoleView "$UNNAMED$13" @21
+						Parent_View 	@20
+						location   	(842, -101)
+						stereotype 	TRUE
+						line_color 	3342489
+						quidu      	"5B5B2CA3015C"
+						client     	@20
+						supplier   	@5
+						vertices   	(list Points
+						    (1234, 1083)
+						    (1797, 861))
+						line_style 	0)
+					    (object RoleView "$UNNAMED$14" @22
+						Parent_View 	@20
+						location   	(842, -101)
+						stereotype 	TRUE
+						line_color 	3342489
+						quidu      	"5B5B2CA3015E"
+						client     	@20
+						supplier   	@7
+						vertices   	(list Points
+						    (1234, 1083)
+						    (671, 1305))
+						line_style 	0)))
+				    (object AssociationViewNew "$UNNAMED$15" @23
+					location   	(1138, 1533)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"5B5B2D4201B0"
+					roleview_list 	(list RoleViews
+					    (object RoleView "$UNNAMED$16" @24
+						Parent_View 	@23
+						location   	(615, 65)
+						stereotype 	TRUE
+						line_color 	3342489
+						quidu      	"5B5B2D430113"
+						client     	@23
+						supplier   	@6
+						vertices   	(list Points
+						    (1138, 1533)
+						    (1606, 1715))
+						line_style 	0)
+					    (object RoleView "$UNNAMED$17" @25
+						Parent_View 	@23
+						location   	(615, 65)
+						stereotype 	TRUE
+						line_color 	3342489
+						quidu      	"5B5B2D430115"
+						client     	@23
+						supplier   	@7
+						vertices   	(list Points
+						    (1138, 1533)
+						    (671, 1352))
+						line_style 	0)))
+				    (object UseCaseView "Use Case View::DataBrainOS::Schema Registry::与DATA ANALYZER （DIFlow）集成" @26
+					location   	(1156, 1953)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@26
+					    location   	(1155, 2128)
+					    anchor_loc 	1
+					    nlines     	2
+					    max_width  	879
+					    justify    	0
+					    label      	"与DATA ANALYZER （DIFlow）集成")
+					icon       	"Business Use Case"
+					icon_style 	"Icon"
+					line_color 	3342489
+					fill_color 	13434879
+					quidu      	"5B5B2D670322"
+					width      	306)
+				    (object AssociationViewNew "$UNNAMED$18" @27
+					location   	(886, 1645)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"5B5B2DBA0036"
+					roleview_list 	(list RoleViews
+					    (object RoleView "$UNNAMED$19" @28
+						Parent_View 	@27
+						location   	(460, -8)
+						stereotype 	TRUE
+						line_color 	3342489
+						quidu      	"5B5B2DBA0394"
+						client     	@27
+						supplier   	@26
+						vertices   	(list Points
+						    (886, 1645)
+						    (1072, 1858))
+						line_style 	0)
+					    (object RoleView "$UNNAMED$20" @29
+						Parent_View 	@27
+						location   	(460, -8)
+						stereotype 	TRUE
+						line_color 	3342489
+						quidu      	"5B5B2DBA0396"
+						client     	@27
+						supplier   	@7
+						vertices   	(list Points
+						    (886, 1645)
+						    (700, 1432))
 						line_style 	0))))))))
 		logical_presentations 	(list unit_reference_list)))
 	logical_presentations 	(list unit_reference_list
@@ -418,7 +655,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Use Case View::developer" @18
+		    (object ClassView "Class" "Use Case View::developer" @30
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -433,7 +670,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@18
+			    Parent_View 	@30
 			    location   	(514, 828)
 			    anchor_loc 	1
 			    nlines     	2
@@ -446,7 +683,7 @@
 			quidu      	"5B5B18EE0297"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object CategoryView "Use Case View::DataBrainOS::Schema Registry" @19
+		    (object CategoryView "Use Case View::DataBrainOS::Schema Registry" @31
 			location   	(1309, 737)
 			font       	(object Font
 			    size       	10
@@ -458,7 +695,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@19
+			    Parent_View 	@31
 			    location   	(1136, 653)
 			    fill_color 	13434879
 			    nlines     	2
@@ -471,12 +708,12 @@
 			quidu      	"5B5B18A6017B"
 			width      	358
 			height     	180)
-		    (object DependencyView "" @20
+		    (object DependencyView "" @32
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"5B5B192E0146"
-			client     	@18
-			supplier   	@19
+			client     	@30
+			supplier   	@31
 			vertices   	(list Points
 			    (571, 672)
 			    (1129, 720))
