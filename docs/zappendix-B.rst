@@ -1,133 +1,119 @@
-附录B：基础组件之 **Apache Kafka** 
+附录B：基础组件之 **Schema Registry** 
 ==============
 
-Apache Kafka是分布式发布-订阅消息系统。它最初由LinkedIn公司开发，之后成为Apache项目的一部分。
-Kafka是一种快速、可扩展的、可持久化、设计内在就是分布式的，分区的和可复制的提交日志服务。
+数智基础服务组件为数智大脑构建数据智能应用服务提供了基础功能。
+下面就数智大脑中主要数智基础服务组件进行一一介绍。
 
-Apache Kafka与传统消息系统相比，有以下不同：
+Schema Registry为数智大脑提供一种集中管理元数据的机制,
+为允许各类组件之间相互的灵活交互提供了有力保障。
 
-它被设计为一个分布式系统，易于向外扩展；
-它同时为发布和订阅提供高吞吐量；
-它支持多订阅者，当失败时能自动平衡消费者；
-它将消息持久化到磁盘，因此可用于批量消费，例如ETL，以及实时应用程序。
 
-常见用例包括：
+元数据实体
+----------------
 
-- 流处理（Stream processing）
+Schema Registry中主要涉及了三种元数据实体。
 
-- 消息机制（Messaging）
+- 元数据组
 
-- 网站行为跟踪与分析（Website activity tracking）
+  用户可以按照功能逻辑或其它需求将元数据进行分组以便于管理。
+  元数据组主要用 *GroupName* 进行区分。
+  例如，*Group Name ： machine-sensors-kafka* 。
 
-- 度量数据采集和监控（Metrics collection and monitoring）
+- 元数据定义
 
-- 日志汇聚（Log aggregation）
+  命名元数据的详细信息，也可成为元数据的元数据。
+  一个元数据只能隶属一个元数据组。 
 
-- 事件驱动（Event sourcing）
+  元数据定义主要包括：
 
-Kafka可与Apache Storm等实时流处理引擎协同进行实时数据分析。
-这种消息传递和流处理技术的结合可使处理能力以线性方式扩展。
+  * 名称（name） – 元数据唯一名称，用于查找元数据。例如： *Schema Name ： machine_events_avro:v* 
 
-Kafka 架构
--------------------------
+  * 类型（Type） – 元数据类型，采用Avro形式 [ARVO]_ 。例如： *Schema Type ： avro* 
 
-Kafka架构包括以下组件：
+  * 兼容策略（Compatibility Policy） – 当新版本元数据创建时需要考虑的兼容规则，参见下面的兼容策略部分。例如： *Compatibility Policy ： SchemaCompatibility.BACKWARD* 
 
-**话题（Topic）** 是特定类型的消息流。消息是字节的有效负载（Payload），
-话题是消息的分类名或种子（Feed）名。
+  * 序列化/反序列化组件（Serializers/Deserializers） - 可上传的与元数据定义相关联的序列化和反序列化组件。
 
-**生产者（Producer）** 是能够发布消息到话题的任何对象。
+- 元数据版本
 
-已发布的消息保存在一组服务器中，它们被称为 **代理（Broker）** 或Kafka集群。
+  与已定义元数据相关的版本信息。一个元数据可以有多个版本。
 
-**消费者** 可以订阅一个或多个话题，并从Broker拉数据，从而消费这些已发布的消息。
+  一个例子::
 
-.. figure:: ./images/kafka/kafka-architecture.png
-    :width: 650px
+    {   
+        "type" : "record",   
+        "namespace" : "databrainhub.dbos.app.driving",   
+        "name" : "cargeoevent",   
+        "fields" : [     
+            { "name" : "eventTime" , "type" : "string" },     
+            { "name" : "eventSource" , "type" : "string" },      
+            { "name" : "carId" , "type" : "int" },      
+            { "name" : "driverId" , "type" : "int"},      
+            { "name" : "driverName" , "type" : "string"},      
+            { "name" : "routeId" , "type" : "int"},      
+            { "name" : "route" , "type" : "string"},      
+            { "name" : "eventType" , "type" : "string"},      
+            { "name" : "longitude" , "type" : "double"},      
+            { "name" : "latitude" , "type" : "double"}     
+        ]
+    }
+
+
+兼容策略（Compatibility Policy）
+-----------------
+
+Schema Registry的一个主要功能是能在元数据演进时对其进行版本控制。 
+兼容性策略在元数据定义级别进行创建，这样可以为每个元数据定义版本演进的兼容规则。
+一旦定义了兼容性策略，任何后续版本的更新都必须遵守已定义的规则，以确保兼容性，
+否则系统将以错误进行处理。
+
+兼容性策略可以采用如下几种情况取值：
+
+.. csv-table:: 兼容性策略取值范围
+   :header: "类型", "值", "解释"
+   :widths: 200, 200, 400
+   
+   "后向兼容", "SchemaCompatibility.BACKWARD", "表示新版本元数据与早期版本兼容。 这意味着按照早期版本写入的数据可以采用新版元数据进行反序列化。"
+   "前向兼容", "SchemaCompatibility.FORWARD", "表示现有版本元数据与后续版本兼容。 这意味着仍然可以使用旧版本读取按新版元数据写入的数据。"
+   "双向兼容", "SchemaCompatibility.FULL", "表示新版本元数据提供向后和向前兼容性。"
+   "无兼容性", "SchemaCompatibility.NONE", "表示无兼容性策略。"
+
+用户可以在添加一个新的元数据时设定兼容性策略，一旦设定就不可以修改。
+缺省值是 *SchemaCompatibility.NONE* 。
+
+用例模型
+------------------------
+
+在DataBrainOS中，Schema Registry主要用例参见下图：
+
+.. figure:: ./images/uc_schema-registry.png
+    :width: 550px
     :align: center
     :height: 450px
     :alt: alternate text
     :figclass: align-center
 
-    Kafka架构示意图
+    Schema Registry用例图
 
-Kafka代理
-**************************
 
-与其它消息系统不同，Kafka代理是无状态的。这意味着消费者必须维护已消费的状态信息。
-些信息由消费者自己维护，代理完全不管。这种设计非常微妙，它本身包含了创新。
 
-- 从代理删除消息变得很棘手，因为代理并不知道消费者是否已经使用了该消息。Kafka创新性地解决了这个问题，它将一个简单的基于时间的SLA应用于保留策略。当消息在代理中超过一定时间后，将会被自动删除。
 
-- 这种创新设计有很大的好处，消费者可以故意倒回到老的偏移量再次消费数据。这违反了队列的常见约定，但被证明是许多消费者的基本特征。
+Schema Registry 组件架构
+--------------------------
 
-更多信息请参见  [Kafka]_ 和 [Kafka_InfoQ]_ 。
+Schema Registry 组件架构可参见下图。
 
-ZooKeeper与Kafka
-******************************
-
-ZooKeeper用于管理、协调Kafka代理。每个Kafka代理都通过ZooKeeper协调其它Kafka代理。
-当Kafka系统中新增了代理或者某个代理故障失效时，ZooKeeper服务将通知生产者和消费者。
-生产者和消费者据此开始与其它代理协调工作。
-Kafka整体系统架构如系统图所示。
-
-.. figure:: ./images/kafka/kafka-zookeeper.png
-    :width: 650px
+.. figure:: ./images/architecture-schema-registry.png
+    :width: 550px
     :align: center
     :height: 450px
     :alt: alternate text
     :figclass: align-center
 
-    Kafka与Zookeeper关系
+    Schema Registry 组件架构图
 
-配置生产环境中的Kafka
+
+配置生产环境中的Schema Registry
 -------------------------
 
-为将Kafka应用在生产环境中，需要进行如下操作：
-
-- 准备环境
-
-- 为代理、生产者和消费者定制化配置
-
-- 配置kafka的zookeeper相关配置
-
-准备环境
-***********************
-
-影响Kafka性能主要因素包括：
-
-- 操作系统配置
-
-- 文件系统选择
-
-- 磁盘驱动配置
-
-- JVM 设置
-
-- 以太网带宽
-
-操作系统设置
-^^^^^^^^
-
-
-文件系统选择
-^^^^^^^^
-
-磁盘驱动配置
-^^^^^^^^
-
-JVM 设置
-^^^^^^^^
-
-以太网带宽
-^^^^^^^^
-
-
-为代理、生产者和消费者定制化配置
-***********************
-
-
-配置kafka的zookeeper相关配置
-*****************************
-
-
+TBD
