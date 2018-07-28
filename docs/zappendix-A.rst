@@ -32,3 +32,15 @@ Ambari主要具有以下特性：
 
     Ambari 架构图
 
+Ambari Server 会读取 Stack 和 Service 的配置文件。
+当用 Ambari 创建集群的时候，Ambari Server 传送 Stack 和 Service 的配置文件以及 Service 生命周期的控制脚本到 Ambari Agent。Agent 拿到配置文件后，
+会下载安装公共源里软件包（如 Redhat，就是使用 yum 服务）。
+
+安装完成后，Ambari Server 会通知 Agent 去启动 Service。
+之后 Ambari Server 会定期发送命令到 Agent 检查 Service 的状态，Agent 上报给 Server，并呈现在 Ambari 的 GUI 上。
+
+Ambari Server 支持 Rest API，这样可以很容易的扩展和定制化 Ambari。
+甚至于不用登陆 Ambari 的 GUI，只需要在命令行通过 curl 就可以控制 Ambari，以及控制 Hadoop 的 cluster。
+具体的 API 可以参见 Apache Ambari 的官方网页 API reference，参见 [Ambari]_ 。
+
+对于安全方面要求比较苛刻的环境来说，Ambari 可以支持 Kerberos 认证的 Hadoop 集群。
