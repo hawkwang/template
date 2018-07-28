@@ -113,3 +113,7 @@ Schema Registry 组件架构可参见下图。
     Schema Registry 组件架构图
 
 
+配置生产环境中的Schema Registry
+-------------------------
+
+TBD
