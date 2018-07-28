@@ -26,7 +26,6 @@ Ambari主要具有以下特性：
 .. figure:: ./images/ambari/ambari-architecture.png
     :width: 550px
     :align: center
-    :height: 450px
     :alt: alternate text
     :figclass: align-center
 
