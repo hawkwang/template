@@ -13,6 +13,8 @@
 
 .. [H2O3] Welcome to H2O 3， http://docs.h2o.ai/h2o/latest-stable/h2o-docs/welcome.html
 
+.. [Hadoop] Apache Hadoop 官网， http://hadoop.apache.org/
+
 .. [HBase] Apache HBase 官网， https://hbase.apache.org/
 
 .. [HBase_Huawei] 华为大数据-HBase， http://developer.huawei.com/en/ict/Products/BigData/FusionInsightHD/HBase/SDK

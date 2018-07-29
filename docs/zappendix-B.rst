@@ -1,119 +1,72 @@
-附录B：基础组件之 **Schema Registry** 
+附录B：基础组件之 **Hadoop** 
 ==============
 
-数智基础服务组件为数智大脑构建数据智能应用服务提供了基础功能。
-下面就数智大脑中主要数智基础服务组件进行一一介绍。
+Hadoop是一个开源框架，允许使用简单的编程模型在跨计算机集群的分布式环境中存储和处理大数据。
+它的设计是从单个服务器扩展到数千个机器，每个都提供本地计算和存储。
 
-Schema Registry为数智大脑提供一种集中管理元数据的机制,
-为允许各类组件之间相互的灵活交互提供了有力保障。
+用户可以在不了解分布式底层细节的情况下，开发分布式程序。充分利用集群的威力进行高速运算和存储。
+Hadoop实现了一个分布式文件系统（Hadoop Distributed File System），简称HDFS。
+HDFS有高容错性的特点，并且设计用来部署在低廉的（low-cost）硬件上；
+而且它提供高吞吐量（high throughput）来访问应用程序的数据，适合那些有着超大数据集（large data set）的应用程序。
 
-
-元数据实体
+Hadoop 架构
 ----------------
 
-Schema Registry中主要涉及了三种元数据实体。
+Hadoop包括如下几个模块:
 
-- 元数据组
+- **Hadoop Common**: 该基本户模块用以支撑Hadoop中的其他模块。
 
-  用户可以按照功能逻辑或其它需求将元数据进行分组以便于管理。
-  元数据组主要用 *GroupName* 进行区分。
-  例如，*Group Name ： machine-sensors-kafka* 。
+- **Hadoop Distributed File System (HDFS™)**: 一种分布式文件系统，提供对应用程序数据的高吞吐量访问支持。
 
-- 元数据定义
+- **Hadoop YARN**: 作业调度和集群资源管理的框架。
 
-  命名元数据的详细信息，也可成为元数据的元数据。
-  一个元数据只能隶属一个元数据组。 
+- **Hadoop MapReduce**: 基于YARN，用于并行处理大型数据集的模块。
 
-  元数据定义主要包括：
+HDFS 架构
+***********************
 
-  * 名称（name） – 元数据唯一名称，用于查找元数据。例如： *Schema Name ： machine_events_avro:v* 
+下图为HDFS的架构图：
 
-  * 类型（Type） – 元数据类型，采用Avro形式 [ARVO]_ 。例如： *Schema Type ： avro* 
-
-  * 兼容策略（Compatibility Policy） – 当新版本元数据创建时需要考虑的兼容规则，参见下面的兼容策略部分。例如： *Compatibility Policy ： SchemaCompatibility.BACKWARD* 
-
-  * 序列化/反序列化组件（Serializers/Deserializers） - 可上传的与元数据定义相关联的序列化和反序列化组件。
-
-- 元数据版本
-
-  与已定义元数据相关的版本信息。一个元数据可以有多个版本。
-
-  一个例子::
-
-    {   
-        "type" : "record",   
-        "namespace" : "databrainhub.dbos.app.driving",   
-        "name" : "cargeoevent",   
-        "fields" : [     
-            { "name" : "eventTime" , "type" : "string" },     
-            { "name" : "eventSource" , "type" : "string" },      
-            { "name" : "carId" , "type" : "int" },      
-            { "name" : "driverId" , "type" : "int"},      
-            { "name" : "driverName" , "type" : "string"},      
-            { "name" : "routeId" , "type" : "int"},      
-            { "name" : "route" , "type" : "string"},      
-            { "name" : "eventType" , "type" : "string"},      
-            { "name" : "longitude" , "type" : "double"},      
-            { "name" : "latitude" , "type" : "double"}     
-        ]
-    }
-
-
-兼容策略（Compatibility Policy）
------------------
-
-Schema Registry的一个主要功能是能在元数据演进时对其进行版本控制。 
-兼容性策略在元数据定义级别进行创建，这样可以为每个元数据定义版本演进的兼容规则。
-一旦定义了兼容性策略，任何后续版本的更新都必须遵守已定义的规则，以确保兼容性，
-否则系统将以错误进行处理。
-
-兼容性策略可以采用如下几种情况取值：
-
-.. csv-table:: 兼容性策略取值范围
-   :header: "类型", "值", "解释"
-   :widths: 200, 200, 400
-   
-   "后向兼容", "SchemaCompatibility.BACKWARD", "表示新版本元数据与早期版本兼容。 这意味着按照早期版本写入的数据可以采用新版元数据进行反序列化。"
-   "前向兼容", "SchemaCompatibility.FORWARD", "表示现有版本元数据与后续版本兼容。 这意味着仍然可以使用旧版本读取按新版元数据写入的数据。"
-   "双向兼容", "SchemaCompatibility.FULL", "表示新版本元数据提供向后和向前兼容性。"
-   "无兼容性", "SchemaCompatibility.NONE", "表示无兼容性策略。"
-
-用户可以在添加一个新的元数据时设定兼容性策略，一旦设定就不可以修改。
-缺省值是 *SchemaCompatibility.NONE* 。
-
-用例模型
-------------------------
-
-在DataBrainOS中，Schema Registry主要用例参见下图：
-
-.. figure:: ./images/uc_schema-registry.png
+.. figure:: ./images/hadoop/hdfsarchitecture.png
     :width: 550px
     :align: center
-    :height: 450px
     :alt: alternate text
     :figclass: align-center
 
-    Schema Registry用例图
+    HDFS 架构图
 
 
+YARN 架构
+***********************
 
+下图为YARN的架构图：
 
-Schema Registry 组件架构
---------------------------
-
-Schema Registry 组件架构可参见下图。
-
-.. figure:: ./images/architecture-schema-registry.png
+.. figure:: ./images/hadoop/yarn_architecture.gif
     :width: 550px
     :align: center
-    :height: 450px
     :alt: alternate text
     :figclass: align-center
 
-    Schema Registry 组件架构图
+    YARN 架构图
 
 
-配置生产环境中的Schema Registry
--------------------------
+主要优点
+----------------
 
-TBD
+主要有以下几个优点：
+
+- **高可靠性** - Hadoop能够自动保存数据的多个副本，并且能够自动将失败的任务重新分配。
+
+- **高扩展性** - Hadoop是在可用的计算机集簇间分配数据并完成计算任务的，这些集簇可以方便地扩展到数以千计的节点中。
+
+- **高效性** - Hadoop能够在节点之间动态地移动数据，并保证各个节点的动态平衡，因此处理速度非常快。
+
+- **低成本** - 与一体机、商用数据仓库等相比，hadoop是开源的，项目的软件成本因此会大大降低。
+
+更多信息可参见官网： [Hadoop]_ 。
+
+
+相关组件
+----------------
+
+Hive、HBase等。
