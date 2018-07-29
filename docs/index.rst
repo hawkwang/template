@@ -6,6 +6,14 @@
 
 我们很高兴您有兴趣了解更多有关DataBrainOS的信息。 如果您有任何问题或想法要分享，请将它们以Issue的形式发布到我们的 `Github网站 <https://github.com/hawkwang/template/issues>`_ 上。
 
+.. figure:: ./images/homepage.png
+    :width: 100%
+    :align: center
+    :alt: alternate text
+    :figclass: align-center
+
+    
+
 用户文档
 ---------------
 
