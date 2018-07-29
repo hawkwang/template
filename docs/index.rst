@@ -1,12 +1,13 @@
-.. Read the Docs Template documentation master file, created by
-   sphinx-quickstart on Tue Aug 26 14:19:49 2014.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
+==================================================
 欢迎访问数智大脑（DataBrainOS）文档!
 ==================================================
 
-Contents:
+欢迎来到DataBrainOS文档站点！您可根据自己的兴趣从侧栏选择学习路径，或查看下面的完整内容大纲。
+
+我们很高兴您有兴趣了解更多有关DataBrainOS的信息。 如果您有任何问题或想法要分享，请将它们以Issue的形式发布到我们的 `Github网站 <https://github.com/hawkwang/template/issues>`_ 上。
+
+用户文档
+---------------
 
 .. toctree::
    :maxdepth: 2
@@ -16,10 +17,5 @@ Contents:
 
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 

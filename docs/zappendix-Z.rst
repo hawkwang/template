@@ -11,6 +11,8 @@
 
 .. [DELLEMCHADOOP]	GET THE POWER OF HADOOP FASTER，参见：https://www.dellemc.com/en-us/solutions/data-analytics/hadoop/index.htm
 
+.. [H2O3] Welcome to H2O 3， http://docs.h2o.ai/h2o/latest-stable/h2o-docs/welcome.html
+
 .. [HBase] Apache HBase 官网， https://hbase.apache.org/
 
 .. [HBase_Huawei] 华为大数据-HBase， http://developer.huawei.com/en/ict/Products/BigData/FusionInsightHD/HBase/SDK
@@ -20,3 +22,5 @@
 .. [Kafka_InfoQ] Apache Kafka：下一代分布式消息系统，参见：http://www.infoq.com/cn/articles/apache-kafka
 
 .. [NIFI] APACHE NIFI 官网，参见: http://nifi.apache.org/
+
+.. [Stackspace] Stackspace Documentation, http://stackspace.readthedocs.io/en/latest/index.html
