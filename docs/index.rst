@@ -45,6 +45,18 @@
    :maxdepth: 2
    :glob:
 
+   chapter-5-2
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
+   chapter-5-3
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
    chapter-4-1
 
 .. toctree::
