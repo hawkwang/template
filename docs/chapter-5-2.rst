@@ -46,12 +46,12 @@ Apache NiFi详细使用手册可参见 [NIFI]_ 。
    :header: "架构组件", "简要介绍"
    :widths: 100, 400
    
-   "WebServer", "其目的在于提供基于HTTP的命令和控制API。"
+   "Web Server", "其目的在于提供基于HTTP的命令和控制API。"
    "Flow Controller", "这是操作的核心，以Processor为处理单元，提供了用于运行的执行引擎，并管理各种处理的调度。"
    "Extensions", "各种类型的扩展，Extensions的关键在于扩展在JVM中操作和执行。"
    "FlowFile Repository", "FlowFile库的作用是跟踪记录当前在流中处于活动状态的给定流文件的状态，其实现是可插拔的，默认的方法是位于指定磁盘分区上的一个持久的写前日志。"
    "Content Repository", "Content库的作用是给定流文件的实际内容字节所在的位置，其实现也是可插拔的。默认的方法是一种相对简单的机制，即在文件系统中存储数据块。"
-   "Provenance Repository", "Provenance库是所有源数据存储的地方，支持可插拔。默认实现是使用一个或多个物理磁盘卷，在每个位置事件数据都是索引和可搜索的。"
+   "Provenance Repository", "Provenance库是所有Provenance Event数据存储的地方，支持可插拔。默认实现是使用一个或多个物理磁盘卷，在每个位置事件数据都是索引和可搜索的。"
 
 
 Processor（数智探索神经元）

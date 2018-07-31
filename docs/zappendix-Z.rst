@@ -31,3 +31,4 @@
 
 .. [Storm_Mechanism] storm中worker、executor、task之间的关系，参见: https://www.cnblogs.com/Chuck-wu/p/4926038.html
 
+.. [Storm_Spotify] How Spotify Scales Apache Storm，https://labs.spotify.com/2015/01/05/how-spotify-scales-apache-storm/，https://www.zybuluo.com/xishuixixia/note/67493
