@@ -1,4 +1,4 @@
-附录C：基础组件之 **Schema Registry** 
+数智基础服务之 **Schema Registry** 
 ==============
 
 数智基础服务组件为数智大脑构建数据智能应用服务提供了基础功能。
@@ -59,7 +59,7 @@ Schema Registry中主要涉及了三种元数据实体。
     }
 
 
-兼容策略（Compatibility Policy）
+兼容策略
 -----------------
 
 Schema Registry的一个主要功能是能在元数据演进时对其进行版本控制。 

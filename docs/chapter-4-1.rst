@@ -1,4 +1,4 @@
-附录A：基础组件之 **Apache Ambari** 
+数据基础服务之 **Apache Ambari** 
 ==============
 
 Apache Ambari是一种基于Web的工具，支持Apache Hadoop集群的供应、管理和监控。
