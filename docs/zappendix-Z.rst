@@ -25,6 +25,8 @@
 
 .. [NIFI] APACHE NIFI 官网，参见: http://nifi.apache.org/
 
+.. [NIFI_Local] Apache NiFi Processor实战，参见: http://www.cobub.com/actual-combat-of-apache-nifi-processor/
+
 .. [Stackspace] Stackspace Documentation, http://stackspace.readthedocs.io/en/latest/index.html
 
 .. [Storm_Mechanism] storm中worker、executor、task之间的关系，参见: https://www.cnblogs.com/Chuck-wu/p/4926038.html
