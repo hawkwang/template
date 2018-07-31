@@ -1,4 +1,4 @@
-数智基础服务之 **Apache Kafka** 
+数智基础服务： **Apache Kafka** 
 ==============
 
 Apache Kafka是分布式发布-订阅消息系统。它最初由LinkedIn公司开发，之后成为Apache项目的一部分。
