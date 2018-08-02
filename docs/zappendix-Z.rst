@@ -35,10 +35,19 @@
 
 .. [NIFI_Local] Apache NiFi Processor实战，参见: http://www.cobub.com/actual-combat-of-apache-nifi-processor/
 
+.. [KYLIN_PALO] Apache Kylin VS Baidu Palo，https://blog.bcmeng.com/post/apache-kylin-vs-baidu-palo.html
+
 .. [PALO] 百度数据仓库Palo，https://cloud.baidu.com/product/palo.html
+
+.. [Redash] Redash helps you make sense of your data，https://redash.io/
 
 .. [Stackspace] Stackspace Documentation, http://stackspace.readthedocs.io/en/latest/index.html
 
 .. [Storm_Mechanism] storm中worker、executor、task之间的关系，参见: https://www.cnblogs.com/Chuck-wu/p/4926038.html
 
 .. [Storm_Spotify] How Spotify Scales Apache Storm，https://labs.spotify.com/2015/01/05/how-spotify-scales-apache-storm/，https://www.zybuluo.com/xishuixixia/note/67493
+
+.. [TiDB] TiDB，https://www.pingcap.com/
+
+.. [Zeppelin] Apache Zeppelin，https://zeppelin.apache.org/
+
