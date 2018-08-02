@@ -23,9 +23,19 @@
 
 .. [Kafka_InfoQ] Apache Kafka：下一代分布式消息系统，参见：http://www.infoq.com/cn/articles/apache-kafka
 
-.. [NIFI] APACHE NIFI 官网，参见: http://nifi.apache.org/
+.. [NIFI] APACHE NIFI 官网，参见: http://nifi.apache.org/，http://nifi.apache.org/docs.html
+
+.. [NIFI_Depth] Apache NiFi In Depth，http://nifi.apache.org/docs/nifi-docs/html/nifi-in-depth.html
+
+.. [NIFI_Example] Example Dataflow Templates，https://cwiki.apache.org/confluence/display/NIFI/Example+Dataflow+Templates
+
+.. [NIFI_ExecuteScript] ExecuteScript Cookbook，https://community.hortonworks.com/articles/75032/executescript-cookbook-part-1.html, https://community.hortonworks.com/articles/75032/executescript-cookbook-part-2.html, https://community.hortonworks.com/articles/75032/executescript-cookbook-part-3.html
+
+.. [NIFI_Http] HTTP communication with Apache NiFi, https://ddewaele.github.io/http-communication-with-apache-nifi/
 
 .. [NIFI_Local] Apache NiFi Processor实战，参见: http://www.cobub.com/actual-combat-of-apache-nifi-processor/
+
+.. [PALO] 百度数据仓库Palo，https://cloud.baidu.com/product/palo.html
 
 .. [Stackspace] Stackspace Documentation, http://stackspace.readthedocs.io/en/latest/index.html
 
