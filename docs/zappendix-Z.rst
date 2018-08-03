@@ -7,6 +7,10 @@
 
 .. [Ambari_IBM] Ambari——大数据平台的搭建利器，参见：https://www.ibm.com/developerworks/cn/opensource/os-cn-bigdata-ambari/
 
+.. [Atlas] Apache Atlas 官网，参见：https://atlas.apache.org/
+
+.. [Atlas-1] Hadoop的元数据治理--Apache Atlas，https://www.jianshu.com/p/4eee91bc926c
+
 .. [AVRO] APACHE AVRO，Avro是一个数据序列化系统，设计用于支持大批量数据交换的应用。参见: https://avro.apache.org/，https://www.jianshu.com/p/ecbb607809c4
 
 .. [DELLEMCHADOOP]	GET THE POWER OF HADOOP FASTER，参见：https://www.dellemc.com/en-us/solutions/data-analytics/hadoop/index.htm
@@ -40,6 +44,8 @@
 .. [PALO] 百度数据仓库Palo，https://cloud.baidu.com/product/palo.html
 
 .. [Redash] Redash helps you make sense of your data，https://redash.io/
+
+.. [Redash_1] 浅析数据查询与可视化工具--Redash，https://zhuanlan.zhihu.com/p/31292944
 
 .. [Stackspace] Stackspace Documentation, http://stackspace.readthedocs.io/en/latest/index.html
 
