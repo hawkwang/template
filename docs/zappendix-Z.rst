@@ -15,6 +15,10 @@
 
 .. [DELLEMCHADOOP]	GET THE POWER OF HADOOP FASTER，参见：https://www.dellemc.com/en-us/solutions/data-analytics/hadoop/index.htm
 
+.. [Falcon] Apache Falcon 官网，参见：https://falcon.apache.org/
+
+.. [Falcon_1] Hadoop数据生命周期管理框架Apache Falcon简介，参见：https://www.jianshu.com/p/71032cd5e9f0
+
 .. [H2O3] Welcome to H2O 3， http://docs.h2o.ai/h2o/latest-stable/h2o-docs/welcome.html
 
 .. [Hadoop] Apache Hadoop 官网， http://hadoop.apache.org/
