@@ -13,6 +13,8 @@
 
 .. [AVRO] APACHE AVRO，Avro是一个数据序列化系统，设计用于支持大批量数据交换的应用。参见: https://avro.apache.org/，https://www.jianshu.com/p/ecbb607809c4
 
+.. [Debezium] Debezium 官网，参见：https://debezium.io/
+
 .. [DELLEMCHADOOP]	GET THE POWER OF HADOOP FASTER，参见：https://www.dellemc.com/en-us/solutions/data-analytics/hadoop/index.htm
 
 .. [Falcon] Apache Falcon 官网，参见：https://falcon.apache.org/
@@ -36,6 +38,8 @@
 .. [NIFI_Depth] Apache NiFi In Depth，http://nifi.apache.org/docs/nifi-docs/html/nifi-in-depth.html
 
 .. [NIFI_Example] Example Dataflow Templates，https://cwiki.apache.org/confluence/display/NIFI/Example+Dataflow+Templates
+
+.. [NIFI_CDC] Change Data Capture (CDC) with Apache NiFi，https://community.hortonworks.com/articles/113941/change-data-capture-cdc-with-apache-nifi-version-1-1.html
 
 .. [NIFI_ExecuteScript] ExecuteScript Cookbook，https://community.hortonworks.com/articles/75032/executescript-cookbook-part-1.html, https://community.hortonworks.com/articles/75032/executescript-cookbook-part-2.html, https://community.hortonworks.com/articles/75032/executescript-cookbook-part-3.html
 
