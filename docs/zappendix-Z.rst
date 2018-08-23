@@ -1,4 +1,4 @@
-附录Z: 参考文献
+附录C: 参考文献
 ==============
 
 .. [Ambari] Apache Ambari 官网，参见：https://ambari.apache.org
