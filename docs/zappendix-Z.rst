@@ -7,6 +7,8 @@
 
 .. [Ambari_IBM] Ambari——大数据平台的搭建利器，参见：https://www.ibm.com/developerworks/cn/opensource/os-cn-bigdata-ambari/
 
+.. [Ambari_kafka_manager] Ambari安装集群下安装kafka manager，参见：https://www.cnblogs.com/zhang-ke/p/9020212.html
+
 .. [Atlas] Apache Atlas 官网，参见：https://atlas.apache.org/
 
 .. [Atlas-1] Hadoop的元数据治理--Apache Atlas，https://www.jianshu.com/p/4eee91bc926c
