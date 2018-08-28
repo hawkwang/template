@@ -33,6 +33,8 @@
 
 .. [Kafka_InfoQ] Apache Kafka：下一代分布式消息系统，参见：http://www.infoq.com/cn/articles/apache-kafka
 
+.. [Kafka_InfoQ] kafka维护工具使用指南，参见：https://blog.csdn.net/xhpscdx/article/details/76670209
+
 .. [NIFI] APACHE NIFI 官网，参见: http://nifi.apache.org/，http://nifi.apache.org/docs.html
 
 .. [NIFI_Depth] Apache NiFi In Depth，http://nifi.apache.org/docs/nifi-docs/html/nifi-in-depth.html
