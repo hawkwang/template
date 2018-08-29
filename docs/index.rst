@@ -39,6 +39,12 @@
    :maxdepth: 2
    :glob:
 
+   chapter-quick-start
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
    chapter-5-1
 
 .. toctree::
