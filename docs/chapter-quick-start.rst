@@ -2,9 +2,8 @@
 ============
 
 .. figure:: ./images/under-construction.png
-    :width: 550px
+    :width: 100%
     :align: center
-    :height: 450px
     :alt: alternate text
     :figclass: align-center
 
