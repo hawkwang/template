@@ -1,4 +1,4 @@
-快速入门
+快速入门视频
 ============
 
 .. figure:: ./images/under-construction.png
@@ -11,7 +11,7 @@
 
 .. raw:: html
 
-   <iframe width="560" height="315" src="https://www.youtube.com/embed/K8J3dPBEz1s?list=PLNtMya54qvOHbBdA1x8FNRSpMBEHmhxr0" frameborder="0" allowfullscreen>
+   <iframe frameborder="0" width="640" height="498" src="http://v.qq.com/iframe/player.html?vid=m0555n8nir0&tiny=0&auto=0" allowfullscreen>
 
 .. raw:: html
 
