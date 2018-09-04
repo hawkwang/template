@@ -4,7 +4,7 @@
 数据接入 - 创建Kafka Topic 及 Schema Registry
 -----------------
 
-为了采用Restful API Push数据到DataBrainOS平台中，用户需要开发API将数据发送到指定的Kafka Topic中。
+为了采用Restful API 集成数据到DataBrainOS平台中，用户需要开发API将数据发送到指定的Kafka Topic中。
 Kafka Topic采用平台集成的Kafka Manager创建，Topic中数据格式采用Schema Registry进行定义。
 
 下面视频介绍了如何在DataBrainOS创建Kafka 平台中创建Kafka Topic以及如何在Schema Registry中定义Topic数据格式。
@@ -17,6 +17,7 @@ Kafka Topic采用平台集成的Kafka Manager创建，Topic中数据格式采用
 
    </iframe>
 
+--------------
 
 Restful API接口管理 - API Manager
 -----------------
@@ -38,6 +39,7 @@ Restful API接口管理 - API Manager
 
    </iframe>
 
+--------------
 
 创建DataBrainOS数智应用服务  
 -------------------------------
@@ -52,6 +54,8 @@ Restful API接口管理 - API Manager
 
    </iframe>
 
+--------------
+
 
 数据预处理 - 构建数智探索单元
 -----------------
@@ -65,6 +69,8 @@ Restful API接口管理 - API Manager
 
    </iframe>
 
+--------------
+
 
 数据流实时处理 - 构建数智认知单元
 ---------------------------
@@ -76,6 +82,8 @@ Restful API接口管理 - API Manager
 .. raw:: html
 
    </iframe>
+
+--------------
 
 
 在上面的处理过程中，可能会利用机器学习方法对数据进行建模。
@@ -95,19 +103,7 @@ Restful API接口管理 - API Manager
 
    </iframe>
 
-
-采用DataBrainOS的AI Manager进行模型管理
--------------------------
-
-在上面的处理过程中，可能会利用机器学习方法对数据进行建模。
-
-.. raw:: html
-
-   <iframe frameborder="0" width="640" height="498" src="https://v.qq.com/iframe/player.html?vid=i07752rkomx&tiny=0&auto=0" allowfullscreen>
-
-.. raw:: html
-
-   </iframe>
+--------------
 
 
 采用DataBrainOS的AI Manager进行模型管理
@@ -122,6 +118,8 @@ Restful API接口管理 - API Manager
 .. raw:: html
 
    </iframe>
+
+--------------
 
 
 采用HUE进行HBase管理
@@ -137,6 +135,8 @@ Restful API接口管理 - API Manager
 
    </iframe>
 
+--------------
+
 
 DataBrainOS中的结果分析与展现
 ---------------------------
@@ -151,5 +151,7 @@ DataBrainOS中的结果分析与展现
 .. raw:: html
 
    </iframe>
+
+--------------
 
 
