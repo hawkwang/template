@@ -93,6 +93,12 @@
    :maxdepth: 2
    :glob:
 
+   zappendix-Installation
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
    zappendix-X
 
 .. toctree::
