@@ -29,25 +29,38 @@
 在node1上执行 python main.py change_host 改变所有待安装节点的hostname
 
 注：
-1）节点的IP和端口配置在./shell/sys_init/IP_hosts中定义，内容参见如下
 
---------------------------
-192.168.20.5 pro02.dps.com pro02
-192.168.20.6 pro03.dps.com pro03
-192.168.20.8 pro04.dps.com pro04
-192.168.20.9 pro05.dps.com pro05
-192.168.20.10 pro06.dps.com pro06
-192.168.20.11 pro07.dps.com pro07
-192.168.20.12 pro08.dps.com pro08
-192.168.20.2 pro01.dps.com pro01
---------------------------
-注意: 
-*node1配置信息需要放在最后一行，且需要回车换行形成随后的空行
-./shell/sys_init/hosts.sh   中包含root密码。
-#所有节点会重新启动
+1. 节点的IP和端口配置在./shell/sys_init/IP_hosts中定义。内容参见如下:
+
+  ::
+
+    192.168.20.5 pro02.dps.com pro02
+    192.168.20.6 pro03.dps.com pro03
+    192.168.20.8 pro04.dps.com pro04
+    192.168.20.9 pro05.dps.com pro05
+    192.168.20.10 pro06.dps.com pro06
+    192.168.20.11 pro07.dps.com pro07
+    192.168.20.12 pro08.dps.com pro08
+    192.168.20.2 pro01.dps.com pro01
+    
+
+2. node1配置信息需要放在最后一行，且需要回车换行形成随后的空行。
+
+3. ./shell/sys_init/hosts.sh   中包含root密码。
+
+4. 所有节点会重新启动
 
 
+- 再次连接入node1节点
 
+- cd /opt/deploy_dpaas
+
+- 执行 python main.py auto_ssh， 实现所有节点相互的免密码访问。请进行ssh免密码访问验证。
+
+- 执行 python main.py server 以安装Ambari Server和Kerberos主服务器
+
+- 去其他所有节点安装安装所需的agent 服务，执行 python main.py agent
+前提：要执行 init.sh
 
 .. csv-table:: 集群物理节点角色
    :header: "物理节点角色", "是否必须", "服务器硬件配置"
