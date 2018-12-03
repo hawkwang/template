@@ -77,11 +77,15 @@
     :alt: alternate text
     :figclass: align-center
 
+- 点击“Launch Install Wizard”，填写集群（Cluster）名称，点击“Next”。
+
 .. figure:: ./images/installation/2.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 选择DataBrainOS安装包版本号
 
 .. figure:: ./images/installation/3.png
     :width: 550px
@@ -89,11 +93,24 @@
     :alt: alternate text
     :figclass: align-center
 
+- 选择本地库，填写地址如下，并点击“Next”
+
 .. figure:: ./images/installation/4.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 在下面安装选项页面中填写5台机器的FQDN
+
+- 将node1节点的私钥内容复制到下面的文本框中
+
+  ::
+
+    cd ~/.ssh
+    vi id_rsa
+
+- 点击“Next”，进行节点配置确定    
 
 .. figure:: ./images/installation/5.png
     :width: 550px
@@ -101,11 +118,15 @@
     :alt: alternate text
     :figclass: align-center
 
+- 确认进行下一步
+
 .. figure:: ./images/installation/6.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 查看日志，确定问题所在
 
 .. figure:: ./images/installation/7.png
     :width: 550px
@@ -113,11 +134,22 @@
     :alt: alternate text
     :figclass: align-center
 
+- 修复方法
+
+  ::
+
+    在每台机器的ambari-agent的配置文件/etc/ambari-agent/conf/ambari-agent.ini 在 ［security］增加一项
+    [security]
+    force_https_protocol=PROTOCOL_TLSv1_2
+    然后进行“Retry”
+
 .. figure:: ./images/installation/8.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 选择首批安装的服务
 
 .. figure:: ./images/installation/9.png
     :width: 550px
@@ -125,11 +157,15 @@
     :alt: alternate text
     :figclass: align-center
 
+
+
 .. figure:: ./images/installation/10.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 选择安装的节点
 
 .. figure:: ./images/installation/11.png
     :width: 550px
@@ -137,11 +173,15 @@
     :alt: alternate text
     :figclass: align-center
 
+- 确认服务的节点分布
+
 .. figure:: ./images/installation/12.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 跳过服务配置，直接进行首批服务安装
 
 .. figure:: ./images/installation/13.png
     :width: 550px
@@ -185,6 +225,8 @@
     :alt: alternate text
     :figclass: align-center
 
+- 选择第二批服务，进行安装
+
 .. figure:: ./images/installation/20.png
     :width: 550px
     :align: center
@@ -203,6 +245,8 @@
     :alt: alternate text
     :figclass: align-center
 
+- 这是新安装服务的节点分布
+
 .. figure:: ./images/installation/23.png
     :width: 550px
     :align: center
@@ -215,11 +259,21 @@
     :alt: alternate text
     :figclass: align-center
 
+- 进行服务的配置
+
 .. figure:: ./images/installation/25.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 在进行所需配置之前需要在安装HIVE的机器上运行脚本（python main.py database_pre），此处是pro02节点。
+
+  ::
+
+    >> cd /opt/deploy_dpaas
+    >> python main.py database_pre
+
 
 .. figure:: ./images/installation/26.png
     :width: 550px
@@ -233,6 +287,8 @@
     :alt: alternate text
     :figclass: align-center
 
+- 此处solr.urls为暂时使用，不work
+
 .. figure:: ./images/installation/28.png
     :width: 550px
     :align: center
@@ -245,17 +301,22 @@
     :alt: alternate text
     :figclass: align-center
 
+
+
 .. figure:: ./images/installation/30.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
 
+- 此处所有密码设置为“left3cols”
+
 .. figure:: ./images/installation/31.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
 
 .. figure:: ./images/installation/32.png
     :width: 550px
@@ -269,17 +330,38 @@
     :alt: alternate text
     :figclass: align-center
 
+- 改成NIFI安装的机器外网地址：https://103.227.51.139:9999/
+
+.. figure:: ./images/installation/33-1.png
+    :width: 550px
+    :align: center
+    :alt: alternate text
+    :figclass: align-center
+
+- 将registry.url改为http://pro02.dps.com:7788/api/v1
+
 .. figure:: ./images/installation/34.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
 
+- 下面配置改为
+
+  ::
+    
+    hwx-public^ic^http://103.227.51.133:8081/nexus/content/groups/public/,hwx-private^htt^te^http://103.227.51.133:8081/nexus/content/groups/public/
+    
+
 .. figure:: ./images/installation/35.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 下面为 databrainos portal 配置
+
+- 将其中172.16.234.45改为localhost
 
 .. figure:: ./images/installation/36.png
     :width: 550px
@@ -293,6 +375,8 @@
     :alt: alternate text
     :figclass: align-center
 
+改为
+
 .. figure:: ./images/installation/38.png
     :width: 550px
     :align: center
@@ -305,11 +389,15 @@
     :alt: alternate text
     :figclass: align-center
 
+改为
+
 .. figure:: ./images/installation/40.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- databrain_user 组件配置, 其中mysql地址，账号和密码需要修改
 
 .. figure:: ./images/installation/41.png
     :width: 550px
@@ -317,17 +405,23 @@
     :alt: alternate text
     :figclass: align-center
 
+- Kafka UI 配置, 改为pro01,02,03
+
 .. figure:: ./images/installation/42.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
 
+- predict 配置,改为 distributionUrl=http\://pro08.dps.com/gradle-2.7-all.zip
+
 .. figure:: ./images/installation/43.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- AI Manager配置，中将dburl中dev02改为pro02，将dbpasswd改为Beijing123.
 
 .. figure:: ./images/installation/44.png
     :width: 550px
@@ -347,17 +441,23 @@
     :alt: alternate text
     :figclass: align-center
 
+- 注意：下一个页面等待，不要直接点击“Next”，会自动跳转。
+
 .. figure:: ./images/installation/47.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
 
+
+
 .. figure:: ./images/installation/48.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 进行kerberos配置
 
 .. figure:: ./images/installation/49.png
     :width: 550px
@@ -371,11 +471,15 @@
     :alt: alternate text
     :figclass: align-center
 
+- 选中多选框
+
 .. figure:: ./images/installation/51.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 配置，参见连续三图
 
 .. figure:: ./images/installation/52.png
     :width: 550px
@@ -431,6 +535,8 @@
     :alt: alternate text
     :figclass: align-center
 
+
+
 .. figure:: ./images/installation/61.png
     :width: 550px
     :align: center
@@ -455,11 +561,106 @@
     :alt: alternate text
     :figclass: align-center
 
+- 点击“Restart All Required”
+
 .. figure:: ./images/installation/65.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 需要针对每个组件进行 Kerberos 配置。前提：Kerberos自身进行配置
+
+- kafka
+
+  ::
+    
+    Kafka Broker
+    listeners=SASL_PLAINTEXT://localhost:6667
+    
+    Custom kafka-broker
+    security.inter.broker.protocotocol=SASL_PLAINTEXT
+
+- storm 
+
+  ::
+    
+    Advanced storm-site
+    nimbus.impersonation.acl={ {{storm_bare_jaas_principal}} : {hosts: ['*'], groups: ['*']}, streamline-{{cluster_name}} : {hosts: ['*'], groups: ['*']}}
+
+-  hbase（注意下面红色标出的cflow需要改成自己在ambari里创建好的集群名，此处为etiir）
+
+  ::
+
+    Custom hbase-site
+    hadoop.proxyuser.HTTP.groups=*
+    hadoop.proxyuser.HTTP.hosts=*
+    hadoop.proxyuser.hbase-cflow.hosts=*
+    hadoop.proxyuser.hbase-cflow.groups=*
+    hadoop.proxyuser.hbase.groups=*
+    hadoop.proxyuser.hbase.hosts=*
+    hadoop.proxyuser.hue.groups=*
+    hadoop.proxyuser.hue.hosts=*
+    hadoop.proxyuser.hue-cflow.groups=*
+    hadoop.proxyuser.hue-cflow.hosts=*
+    hadoop.proxyuser.storm-cflow.groups=*
+    hadoop.proxyuser.storm-cflow.hosts=*
+    hadoop.proxyuser.streamline-cflow.groups=*
+    hadoop.proxyuser.streamline-cflow.hosts=*
+    hbase.regionserver.thrift.http=true
+    hbase.thrift.kerberos.principal=HTTP/_HOST@EXAMPLE.COM
+    hbase.thrift.keytab.file=/etc/security/keytabs/spnego.service.keytab
+    hbase.thrift.security.qop=auth
+    hbase.thrift.support.proxyuser=true
+
+- hdfs（注意下面红色标出的cflow需要改成自己在ambari里创建好的集群名）
+
+  ::
+    
+    Custom core-site
+    hadoop.proxyuser.HTTP.groups=*
+    hadoop.proxyuser.druid.groups=*
+    hadoop.proxyuser.druid.hosts=*
+    hadoop.proxyuser.hue.groups=*
+    hadoop.proxyuser.hue.hosts=*
+    hadoop.proxyuser.storm-cflow.groups=*
+    hadoop.proxyuser.storm-cflow.hosts=*
+    hue.kerberos.principal.shortname=hue
+
+- Druid Configuration Changes
+
+  ::
+
+    Update the Druid property 
+    druid.hadoop.security.spnego.excludedPaths=["/status", "/druid/worker/v1", "/druid/indexer/v1"]
+
+
+- atlas
+
+  ::
+    
+    atlas.kafka.security.protocol=SASL_PLAINTEXT
+
+
+- ranger
+
+  ::
+    
+    atlas.kafka.security.protocol=SASL_PLAINTEXT
+
+
+- hue
+
+  ::
+    
+    App BlackList=impala,security
+
+    Advanced pseudo-distributed.ini 中
+    app_blacklist=impala,security
+
+
+- Nifi
+- 选中 “Enable SSL?”，密码为 "left3cols"
 
 .. figure:: ./images/installation/66.png
     :width: 550px
@@ -467,11 +668,15 @@
     :alt: alternate text
     :figclass: align-center
 
+- 配置完成，重启所有服务。
+
 .. figure:: ./images/installation/67.png
     :width: 550px
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 注意：必须重启 DataBrainOS Portal (DataBrainOS UI)，确保Nifi生成的证书共享给Portal。
 
 .. figure:: ./images/installation/68.png
     :width: 550px
@@ -484,6 +689,8 @@
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- cool！ Now we can access the DataBrainOS UI !!!
 
 .. figure:: ./images/installation/70.png
     :width: 550px
