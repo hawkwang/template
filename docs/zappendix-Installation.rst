@@ -707,30 +707,6 @@
 
 
 
-.. csv-table:: 集群物理节点角色
-   :header: "物理节点角色", "是否必须", "服务器硬件配置"
-   :widths: 200, 200, 200
-   
-   "Active NameNode", "必须", "Master"
-   "Standby NameNode", "必须", "Master"
-   "Data Node 1 - N", "必须", "Data"
-   "High Availability (HA) Node", "必须", "Master"
-   "Admin Node", "必须", "Master"
-   "Edge Node 1 - N", "建议（否则服务要与其它节点公用资源）", "Master"
-
-.. figure:: ./images/network-connections.PNG
-    :width: 550px
-    :align: center
-    :height: 350px
-    :alt: alternate text
-    :figclass: align-center
-
-    网络架构图
-
-
-
-
-下表中列出了数智大脑（DataBrainOS）中运行的数智基础服务。
 
 
 
