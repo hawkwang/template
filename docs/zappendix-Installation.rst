@@ -397,6 +397,8 @@
     :alt: alternate text
     :figclass: align-center
 
+其中，H2O的url端口8888需要改为9358
+
 - databrain_user 组件配置, 其中mysql地址，账号和密码需要修改
 
 .. figure:: ./images/installation/41.png
@@ -689,6 +691,14 @@
     :align: center
     :alt: alternate text
     :figclass: align-center
+
+- 在mysql那个节点（此处是pro02）执行如下命令： 
+
+  ::
+
+    cd /opt/deploy_dpaas
+    python main.py db_post
+
 
 - cool！ Now we can access the DataBrainOS UI !!!
 
