@@ -737,7 +737,11 @@
     :figclass: align-center
 
 
+.. toctree::
+   :maxdepth: 2
+   :glob:
 
+   zappendix-Installation-1
 
 
 运行及验证
