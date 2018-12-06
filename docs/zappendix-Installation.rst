@@ -247,6 +247,12 @@
 
 - 这是新安装服务的节点分布
 
+.. figure:: ./images/installation/23-0.png
+    :width: 550px
+    :align: center
+    :alt: alternate text
+    :figclass: align-center
+
 .. figure:: ./images/installation/23.png
     :width: 550px
     :align: center
@@ -338,7 +344,14 @@
     :alt: alternate text
     :figclass: align-center
 
-- 将registry.url改为http://pro02.dps.com:7788/api/v1
+
+
+- streamline
+
+  ::
+
+    registry.url改为http://pro02.dps.com:7788/api/v1
+
 
 .. figure:: ./images/installation/34.png
     :width: 550px
@@ -350,8 +363,7 @@
 
   ::
     
-    hwx-public^ic^http://103.227.51.133:8081/nexus/content/groups/public/,hwx-private^htt^te^http://103.227.51.133:8081/nexus/content/groups/public/
-    
+    hwx-public^http://103.227.51.133:8081/nexus/content/groups/public/,hwx-private^http://103.227.51.133:8081/nexus/content/groups/public/
 
 .. figure:: ./images/installation/35.png
     :width: 550px
