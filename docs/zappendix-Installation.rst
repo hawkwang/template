@@ -700,6 +700,34 @@
     python main.py db_post
 
 
+- 确保HBase服务的Phoenix和Thrift支持
+
+1. 确保Phoenix配置正确
+
+.. figure:: ./images/installation/phoenix.png
+    :width: 550px
+    :align: center
+    :alt: alternate text
+    :figclass: align-center
+
+2. 重启HBase相关服务 
+
+.. figure:: ./images/installation/hbase_restart.png
+    :width: 550px
+    :align: center
+    :alt: alternate text
+    :figclass: align-center
+
+3. 启动 Thrift 服务。如果不启动，Hue无法连接到HBase
+
+  ::
+
+    登陆HBase Master所在机器，执行如下命令：
+    su hbase
+    kinit -kt /etc/security/keytabs/spnego.service.keytab HTTP/pro01.dps.com@EXAMPLE.COM
+    /usr/hdp/2.6.1.0-129/hbase/bin/hbase-daemon.sh start thrift -p 9090 --infoport 9095
+
+
 - cool！ Now we can access the DataBrainOS UI !!!
 
 .. figure:: ./images/installation/70.png
