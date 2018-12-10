@@ -346,6 +346,13 @@
 
 
 
+- Registry
+
+  ::
+
+    Registry storage connector url 改为 jdbc:mysql://pro02.dps.com:3306/registry
+
+
 - streamline
 
   ::
