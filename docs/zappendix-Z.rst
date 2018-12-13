@@ -69,3 +69,4 @@
 
 .. [Zeppelin] Apache Zeppelin，https://zeppelin.apache.org/
 
+.. [rst] reStructuredText 语法, https://3vshej.cn/rstSyntax/index.html
